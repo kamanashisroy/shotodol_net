@@ -1,0 +1,3 @@
+OS_PLATFORM/platform_net
+libs/netio
+apps/net_echo

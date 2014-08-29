@@ -30,6 +30,10 @@ namespace shotodol_platform_net {
 		public int write(extring*buf);
 		[CCode (cname="net_stream_close", cheader_filename = "shotodol_platform_net.h")]
 		public int close();
+		[CCode (cname="net_stream_get_token", cheader_filename = "shotodol_platform_net.h")]
+		public aroop_uword16 getToken();
+		[CCode (cname="net_stream_set_token", cheader_filename = "shotodol_platform_net.h")]
+		public void setToken(aroop_uword16 token);
 	}
 	[CCode (cname="struct net_stream_poll", cheader_filename = "shotodol_platform_net.h")]
 	public struct NetStreamPollPlatformImpl {

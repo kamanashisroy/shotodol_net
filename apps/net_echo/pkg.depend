@@ -1,3 +1,4 @@
+libs/iostream
 core/commands
 -SHOTODOL_NET_HOME
 libs/netio

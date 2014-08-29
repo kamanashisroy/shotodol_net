@@ -22,6 +22,7 @@ enum {
 	NET_STREAM_FLAG_LISTEN = 1<<6,
 };
 struct net_stream {
+	SYNC_UWORD16_T token;
 	int sock;
 	union {
 		struct sockaddr_in in;
@@ -61,5 +62,7 @@ int net_stream_poll_delete_stream(struct net_stream_poll*spoll, struct net_strea
 int net_stream_poll_check_events(struct net_stream_poll*spoll);
 struct net_stream*net_stream_poll_next(struct net_stream_poll*spoll);
 #define net_stream_poll_create(x) ({(x)->fdcount = 0;})
+#define net_stream_set_token(x,y) ({(x)->token = y;})
+#define net_stream_get_token(x) ({(x)->token;})
 
 #endif //SHOTODOL_PLUGIN_INCLUDE_H

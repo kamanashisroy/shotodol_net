@@ -195,7 +195,6 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 }
 
 int net_stream_recv(struct net_stream*strm, struct aroop_txt*buf) {
-	printf("Reading %d\n", strm->sock);
 	int len = recv(strm->sock, aroop_txt_to_string(buf)+buf->len, buf->size - buf->len, MSG_DONTWAIT);
 	if(len > 0) {
 		buf->len += len;

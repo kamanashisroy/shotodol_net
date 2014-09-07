@@ -1,0 +1,5 @@
+
+SHOTODOL_NETIO_CSOURCES=$(wildcard $(SHOTODOL_NET_HOME)/libs/netio/vsrc/*.c)
+SHOTODOL_NETIO_VSOURCE_BASE=$(basename $(notdir $(SHOTODOL_NETIO_CSOURCES)))
+OBJECTS+=$(addprefix $(SHOTODOL_NET_HOME)/$(OBJDIR_COMMON)/, $(addsuffix .o,$(SHOTODOL_NETIO_VSOURCE_BASE)))
+

@@ -1,3 +1,6 @@
 libs/iostream
+libs/propeller
+libs/watchdog
+libs/plugin
 -SHOTODOL_NET_HOME
 OS_PLATFORM/platform_net

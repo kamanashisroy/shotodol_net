@@ -54,4 +54,9 @@ Now you can easily build shotodol\_net like,
  a/shotodol_net$ ls
 	shotodol.bin
 ```
+
+Modules
+=========
+- [netio](libs/netio/README.md)
+
 Enjoy !

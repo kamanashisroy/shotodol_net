@@ -11,12 +11,14 @@ internal class shotodol.netio.NetOutputStream : OutputStream {
 	Queue<xtring>packets;
 	internal shotodol_platform_net.NetStreamPlatformImpl client;
 	bool asyncStream;
+	bool connectionless;
 	//long lastActivityTime;
-	public NetOutputStream(bool isAsynchronous = false) {
+	public NetOutputStream(bool isAsynchronous = false, bool isConnectionless = false) {
 		packets = Queue<xtring>();
 		closed = false;
 		client = shotodol_platform_net.NetStreamPlatformImpl();
 		asyncStream = isAsynchronous;
+		connectionless = isConnectionless;
 		//lastActivityTime = 0;
 		// TODO cleanup on last activity time
 	}
@@ -29,7 +31,7 @@ internal class shotodol.netio.NetOutputStream : OutputStream {
 		xtring?pkt = packets.dequeue();	
 		if(pkt == null)
 			return 0;
-		return client.write(pkt);
+		return connectionless?client.writeTo(pkt):client.write(pkt);
 	}
 
 
@@ -37,7 +39,7 @@ internal class shotodol.netio.NetOutputStream : OutputStream {
 		if(closed)
 			return 0;
 		if(!asyncStream)
-			client.write(buf);
+			return connectionless?client.writeTo(buf):client.write(buf);
 		int len = buf.length();
 		xtring pkt = new xtring.copy_on_demand(buf);
 		packets.enqueue(pkt);

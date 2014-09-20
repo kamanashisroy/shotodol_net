@@ -51,8 +51,8 @@ configLines["LINUX_BLUETOOTH"] = prompt_yes_no("enable bluetooth ?(y/n) > ")
 if yes_no_to_bool(configLines["LINUX_BLUETOOTH"]) then
 	configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -DLINUX_BLUETOOTH"
 end
-if yes_no_to_bool(prompt_yes_no("enable tcp debug (-DTCP_DEBUG) ?(y/n) > ")) then
-	configLines["VALAFLAGS+"] = configLines["VALAFLAGS+"] .. "-D TCP_DEBUG"
+if yes_no_to_bool(prompt_yes_no("enable networking debug (-D CONNECTION_ORIENTED_DEBUG -D CONNECTIONLESS_DEBUG) ?(y/n) > ")) then
+	configLines["VALAFLAGS+"] = configLines["VALAFLAGS+"] .. "-D CONNECTION_ORIENTED_DEBUG -D CONNECTIONLESS_DEBUG "
 end
 
 local conf = assert(io.open("build/.config.mk", "w"))

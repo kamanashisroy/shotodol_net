@@ -54,6 +54,11 @@ int net_stream_send(struct net_stream*strm, struct aroop_txt*buf);
 #define net_stream_close(x) ({if((x)->sock > 0){close((x)->sock);}0;})
 #define net_stream_accepting(x) ({((x)->flags & NET_STREAM_FLAG_BIND);})
 int net_stream_accept_new(struct net_stream*newone, struct net_stream*from);
+int net_stream_addr_copy_to_extring(struct net_stream*strm, struct sockaddr*addr, struct aroop_txt*buf);
+int net_stream_addr_copy_from_extring(struct net_stream*strm, struct sockaddr*addr, struct aroop_txt*buf);
+int net_stream_recvfrom(struct net_stream*strm, struct aroop_txt*buf, unsigned int*dataPosition);
+int net_stream_sendto(struct net_stream*strm, struct aroop_txt*buf);
+	
 
 // poll
 int net_stream_poll_add_stream(struct net_stream_poll*spoll, struct net_stream*strm);

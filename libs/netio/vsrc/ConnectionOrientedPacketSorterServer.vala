@@ -6,7 +6,7 @@ using shotodol.netio;
  * \addtogroup netio
  * @{
  */
-public class shotodol.netio.TCPPacketSorterServer : TCPPacketSorterSpindle {
+public class shotodol.netio.ConnectionOrientedPacketSorterServer : PacketSorterSpindle {
 	OutputStream?sink;
 	shotodol_platform_net.NetStreamPlatformImpl server = shotodol_platform_net.NetStreamPlatformImpl();
 	CompositeOutputStream responders;
@@ -18,12 +18,13 @@ public class shotodol.netio.TCPPacketSorterServer : TCPPacketSorterSpindle {
 	/**
 	 * \brief This is vanilla tcp server.
 	 *
-	 * The server listens for data and put that data into sync. The sync should be registered as plugin. For example, to listen to http data you need to write an extension at 'http/input/sync'. @see rehashHook()
+	 * The server listens for data and put that data into 'protocol/input/sink'. The sink(like gstreamer sink) should be registered as plugin. For example, to listen to http data you need to write an extension at 'http/input/sink'. @see rehashHook()
 	 * @param addr Server address, for example, TCP://127.0.0.1:80
 	 * @param stack Protocol stack, for example, http,xmpp etc .
+	 * see http server implementation for example.
 	 * 
 	 */
-	public TCPPacketSorterServer(extring*stack, extring*addr) {
+	public ConnectionOrientedPacketSorterServer(extring*stack, extring*addr) {
 		base();
 		laddr = extring.copy_on_demand(addr);
 		pstack = extring.copy_on_demand(stack);
@@ -33,7 +34,7 @@ public class shotodol.netio.TCPPacketSorterServer : TCPPacketSorterSpindle {
 		responders = new CompositeOutputStream();
 	}
 
-	~TCPPacketSorterServer() {
+	~ConnectionOrientedPacketSorterServer() {
 		server.close();
 	}
 
@@ -45,15 +46,14 @@ public class shotodol.netio.TCPPacketSorterServer : TCPPacketSorterSpindle {
 
 	public override int start(Spindle?plr) {
 		extring rpt = extring.stack(128);
-		rpt.printf("Shotodol tcp server listening spindle starts at %s", laddr.to_string());
+		rpt.printf("Shotodol connection oriented server listening spindle starts at %s", laddr.to_string());
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, &rpt);
 		setup(&laddr);
 		return 0;
 	}
 
 	int setup(extring*addr) {
-		// TODO in place of shotodol_platform_net use abstraction to decouple from the implementation platform
-		extring wvar = extring.set_static_string("TCP server");
+		extring wvar = extring.set_static_string("Connection Oriented server");
 		Watchdog.watchvar(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, &wvar, addr);
 		extring sockaddr = extring.stack(128);
 		sockaddr.concat(addr);
@@ -69,44 +69,16 @@ public class shotodol.netio.TCPPacketSorterServer : TCPPacketSorterSpindle {
 		return ret;
 	}
 
-	int closeClient(aroop_uword16 token) {
-#if TCP_DEBUG
-		print("Closing client \n");
-#endif
-		if(sink == null)
-			return -1;
-		NetOutputStream client = (NetOutputStream)responders.getOutputStream(token);
-		pl.remove(&client.client);
-		return 0;
-	}
-
-	int acceptClient() {
-		// accept client
-#if TCP_DEBUG
-		print("Accepting new client \n");
-#endif
-		NetOutputStream wsink = new NetOutputStream();
-		wsink.client.accept(&server);
-		pl.add(&wsink.client);
-		aroop_uword16 token = responders.addOutputStream(wsink);
-#if TCP_DEBUG
-		print("New conenction token :%d\n", token);
-#endif
-		wsink.client.setToken(token);
-		
-		return 0;
-	}
-
 	internal override int onEvent(shotodol_platform_net.NetStreamPlatformImpl*x) {
 		aroop_uword16 token = x.getToken();
 		if(token == serverInfo.TOKEN) {
-#if TCP_DEBUG
+#if CONNECTION_ORIENTED_DEBUG
 			print("[ ~ ] New client\n");
 #endif
 			acceptClient();
 			return -1;
 		}
-#if TCP_DEBUG
+#if CONNECTION_ORIENTED_DEBUG
 		print("[ + ] Incoming data\n");
 #endif
 		xtring pkt = new xtring.alloc(1024/*, TODO set factory */);
@@ -118,13 +90,13 @@ public class shotodol.netio.TCPPacketSorterServer : TCPPacketSorterSpindle {
 		}
 		len+=2;
 		pkt.fly().setLength(len);
-#if TCP_DEBUG
+#if CONNECTION_ORIENTED_DEBUG
 		print("trimmed packet to %d data\n", pkt.fly().length());
 		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Reading ..");
 #endif
 		// IMPORTANT trim the pkt here.
 		pkt.shrink(len);
-#if TCP_DEBUG
+#if CONNECTION_ORIENTED_DEBUG
 		print("Read %d bytes from %d connection\n", len-2, token);
 		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Read bytes ..");
 #endif
@@ -139,10 +111,39 @@ public class shotodol.netio.TCPPacketSorterServer : TCPPacketSorterSpindle {
 		sink.write(pkt);
 		return 0;
 	}
+       int closeClient(aroop_uword16 token) {
+#if CONNECTION_ORIENTED_DEBUG
+	       print("Closing client \n");
+#endif
+	       if(sink == null)
+		       return -1;
+	       NetOutputStream client = (NetOutputStream)responders.getOutputStream(token);
+	       pl.remove(&client.client);
+	       return 0;
+       }
+
+       int acceptClient() {
+	       // accept client
+#if CONNECTION_ORIENTED_DEBUG
+	       print("Accepting new client \n");
+#endif
+	       NetOutputStream wsink = new NetOutputStream();
+	       wsink.client.accept(&server);
+	       pl.add(&wsink.client);
+	       aroop_uword16 token = responders.addOutputStream(wsink);
+#if CONNECTION_ORIENTED_DEBUG
+	       print("New conenction token :%d\n", token);
+#endif
+	       wsink.client.setToken(token);
+	       
+	       return 0;
+       }
+
+
 	public void registerOutputSink(Module mod) {
 		extring entry = extring.stack(128);
 		entry.concat(&pstack);
-		entry.concat_string("/output/sink");
+		entry.concat_string("/connectionoriented/output/sink");
 		Plugin.register(&entry, new AnyInterfaceExtension(responders, mod));
 	}
 	public void registerRehashHook(Module mod) {
@@ -159,7 +160,7 @@ public class shotodol.netio.TCPPacketSorterServer : TCPPacketSorterSpindle {
 		sink = null;
 		extring entry = extring.stack(128);
 		entry.concat(&pstack);
-		entry.concat_string("/input/sink");
+		entry.concat_string("/connectionoriented/input/sink");
 		Plugin.acceptVisitor(&entry, (x) => {
 			sink = (OutputStream)x.getInterface(null);
 		});

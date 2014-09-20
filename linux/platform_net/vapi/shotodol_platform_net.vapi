@@ -16,6 +16,9 @@ namespace shotodol_platform_net {
 		TCP = 1<<2,
 		CONNECT = 1<<3,
 	}
+	[CCode (cname="struct sockaddr", cheader_filename = "shotodol_platform_net.h")]
+	public struct NetStreamAddrPlatformImpl {
+	}
 	[CCode (cname="struct net_stream", cheader_filename = "shotodol_platform_net.h")]
 	public struct NetStreamPlatformImpl {
 		[CCode (cname="net_stream_empty", cheader_filename = "shotodol_platform_net.h")]
@@ -28,12 +31,23 @@ namespace shotodol_platform_net {
 		public int read(extring*buf);
 		[CCode (cname="net_stream_send", cheader_filename = "shotodol_platform_net.h")]
 		public int write(extring*buf);
+		[CCode (cname="net_stream_recvfrom", cheader_filename = "shotodol_platform_net.h")]
+		public int readFrom(extring*buf, uint*dataPosition);
+		[CCode (cname="net_stream_sendto", cheader_filename = "shotodol_platform_net.h")]
+		public int writeTo(extring*buf);
 		[CCode (cname="net_stream_close", cheader_filename = "shotodol_platform_net.h")]
 		public int close();
 		[CCode (cname="net_stream_get_token", cheader_filename = "shotodol_platform_net.h")]
 		public aroop_uword16 getToken();
+		/**
+		 * Token is useful while using with poll. In the callback the token may identify a client.
+		 */
 		[CCode (cname="net_stream_set_token", cheader_filename = "shotodol_platform_net.h")]
 		public void setToken(aroop_uword16 token);
+		[CCode (cname="net_stream_addr_copy_to_extring", cheader_filename = "shotodol_platform_net.h")]
+		public void copyToEXtring(NetStreamAddrPlatformImpl*addr, extring*memory);
+		[CCode (cname="net_stream_addr_copy_from_extring", cheader_filename = "shotodol_platform_net.h")]
+		public void copyFromEXtring(NetStreamAddrPlatformImpl*addr, extring*memory);
 	}
 	[CCode (cname="struct net_stream_poll", cheader_filename = "shotodol_platform_net.h")]
 	public struct NetStreamPollPlatformImpl {

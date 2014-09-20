@@ -65,10 +65,10 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 #endif
 	}
 	printf("Opening socket at %d\n", strm->sock);
-  if(strm->sock < 0) {
-    printf("Unable to open server socket for listening:%s\n", strerror(errno));
-    return -1;
-  }
+	if(strm->sock < 0) {
+		printf("Unable to open server socket for listening:%s\n", strerror(errno));
+		return -1;
+	}
 
 	printf("Opened socket %d for [%s]\n", strm->sock, aroop_txt_to_string(path));
 	struct aroop_txt portstr;
@@ -221,6 +221,83 @@ int net_stream_send(struct net_stream*strm, struct aroop_txt*buf) {
 	return len;
 }
 
+int net_stream_recvfrom(struct net_stream*strm, struct aroop_txt*buf, unsigned int*dataPosition) {
+	struct sockaddr*anyaddr = (struct sockaddr*)(aroop_txt_to_string(buf)+buf->len);
+	unsigned int addrlen = sizeof(struct sockaddr);
+	if((strm->flags & (NET_STREAM_FLAG_UDP|NET_STREAM_FLAG_TCP))) {
+		addrlen = sizeof(struct sockaddr_in);
+	}
+	unsigned int givenaddrlen = addrlen;
+	*dataPosition = addrlen;
+	int len = recvfrom(strm->sock, aroop_txt_to_string(buf)+buf->len+addrlen, buf->size - buf->len-addrlen, MSG_DONTWAIT, anyaddr, &givenaddrlen);
+	aroop_assert(addrlen >= givenaddrlen);
+	if(len > 0) {
+		struct sockaddr_in*iaddr = (struct sockaddr_in*)anyaddr;
+		char*ip = inet_ntoa((iaddr->sin_addr));
+		printf("Incoming %d bytes of data from %s\n", len, ip);
+		buf->len += len;
+		buf->len += addrlen;
+		return len+addrlen;
+	}
+	if(len < 0) {
+		printf("Error while receiving from [%d]:%s\n", strm->sock, strerror(errno));
+	}
+	return len;
+}
+
+int net_stream_sendto(struct net_stream*strm, struct aroop_txt*buf) {
+	unsigned int addrlen = sizeof(struct sockaddr);
+	if((strm->flags & (NET_STREAM_FLAG_UDP|NET_STREAM_FLAG_TCP))) {
+		addrlen = sizeof(struct sockaddr_in);
+	}
+	int len = sendto(strm->sock, aroop_txt_to_string(buf)+addrlen, buf->len - addrlen, MSG_DONTWAIT, aroop_txt_to_string(buf), addrlen);
+	if(len < 0) {
+		printf("Error while sending [%d]:%s\n", strm->sock, strerror(errno));
+	}
+	// XXX it cannot handle the left over ..
+	return len;
+}
+
+int net_stream_addr_copy_from_extring(struct net_stream*strm, struct sockaddr*addr, struct aroop_txt*buf) {
+	if((strm->flags & (NET_STREAM_FLAG_UDP|NET_STREAM_FLAG_TCP))) {
+		struct aroop_txt addrstr;aroop_txt_embeded_stackbuffer(&addrstr,32);
+		struct aroop_txt portstr;aroop_txt_embeded_stackbuffer(&portstr,32);
+		aroop_txt_concat(&addrstr, buf);
+		int i;
+		for(i = 0;i < addrstr.len;i++) {
+			if(aroop_txt_char_at(&addrstr, i) == ':') {
+				aroop_txt_embeded_txt_copy_shallow(&portstr, &addrstr);
+				aroop_txt_shift(&portstr, i+1);
+				aroop_txt_trim_to_length(&addrstr, i);
+				break;
+			}
+		}
+		struct sockaddr_in*iaddr = (struct sockaddr_in*)addr;
+		iaddr->sin_family = AF_INET;
+		aroop_txt_zero_terminate(&addrstr);
+		inet_aton(aroop_txt_to_string(&addrstr), &(iaddr->sin_addr));
+		aroop_txt_zero_terminate(&portstr);
+		iaddr->sin_port = htons(aroop_txt_to_int(&portstr));
+	}
+	// XXX it works only for TCP and UDP , we need to write something about bluetooth ..
+	return 0;
+}
+
+int net_stream_addr_copy_to_extring(struct net_stream*strm, struct sockaddr*addr, struct aroop_txt*buf) {
+	if((strm->flags & (NET_STREAM_FLAG_UDP|NET_STREAM_FLAG_TCP))) {
+		struct sockaddr_in*iaddr = (struct sockaddr_in*)addr;
+		char*ip = inet_ntoa((iaddr->sin_addr));
+		aroop_txt_concat_string(buf, ip);
+		aroop_txt_concat_char(buf, ':');
+		int port = ntohs(iaddr->sin_port);
+		char portstr[8];
+		snprintf(portstr, sizeof(portstr)-1, "%d", port);
+		aroop_txt_concat_string(buf, portstr);
+	}
+	// XXX it works only for TCP and UDP , we need to write something about bluetooth ..
+	return 0;
+}
+
 int net_stream_poll_check_for(struct net_stream_poll*spoll, struct net_stream*strm, int writing, int reading) {
 	int i;
 	for(i = 0; i < spoll->fdcount; i++) {
@@ -324,7 +401,7 @@ int net_stream_accept_new(struct net_stream*newone, struct net_stream*from) {
 			printf("Accept returned -1: %s\n", strerror(errno));
 		}
 	}
-	printf("Accepted new connection at %d\n", newone->sock);
+	//printf("Accepted new connection at %d\n", newone->sock);
 	return 0;
 }
 

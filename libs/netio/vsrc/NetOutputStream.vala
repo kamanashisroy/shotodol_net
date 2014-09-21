@@ -12,13 +12,15 @@ internal class shotodol.netio.NetOutputStream : OutputStream {
 	internal shotodol_platform_net.NetStreamPlatformImpl client;
 	bool asyncStream;
 	bool connectionless;
+	NetScribe?scribe;
 	//long lastActivityTime;
-	public NetOutputStream(bool isAsynchronous = false, bool isConnectionless = false) {
+	public NetOutputStream(bool isAsynchronous = false, bool isConnectionless = false, NetScribe?gscribe = null) {
 		packets = Queue<xtring>();
 		closed = false;
 		client = shotodol_platform_net.NetStreamPlatformImpl();
 		asyncStream = isAsynchronous;
 		connectionless = isConnectionless;
+		scribe=gscribe;
 		//lastActivityTime = 0;
 		// TODO cleanup on last activity time
 	}
@@ -31,7 +33,18 @@ internal class shotodol.netio.NetOutputStream : OutputStream {
 		xtring?pkt = packets.dequeue();	
 		if(pkt == null)
 			return 0;
-		return connectionless?client.writeTo(pkt):client.write(pkt);
+		if(connectionless) {
+			shotodol_platform_net.NetStreamAddrPlatformImpl rawAddr;
+			aroop_uword16 token = pkt.fly().char_at(0);
+			token = token << 8;
+			token |= pkt.fly().char_at(1);
+			if(scribe == null) return 0;
+			scribe.getAddressAs(token, &rawAddr);
+			pkt.fly().shift(2); // skip the token
+			return client.writeTo(pkt, &rawAddr);
+		} else {
+			return client.write(pkt);
+		}
 	}
 
 
@@ -39,7 +52,18 @@ internal class shotodol.netio.NetOutputStream : OutputStream {
 		if(closed)
 			return 0;
 		if(!asyncStream)
-			return connectionless?client.writeTo(buf):client.write(buf);
+			if(connectionless) {
+				shotodol_platform_net.NetStreamAddrPlatformImpl rawAddr;
+				aroop_uword16 token = buf.char_at(0);
+				token = token << 8;
+				token |= buf.char_at(1);
+				if(scribe == null) return 0;
+				scribe.getAddressAs(token, &rawAddr);
+				buf.shift(2); // skip the token
+				return client.writeTo(buf, &rawAddr);
+			} else {
+				return client.write(buf);
+			}
 		int len = buf.length();
 		xtring pkt = new xtring.copy_on_demand(buf);
 		packets.enqueue(pkt);
@@ -53,6 +77,5 @@ internal class shotodol.netio.NetOutputStream : OutputStream {
 		closed = true;
 	}
 }
-
 
 /* @} */

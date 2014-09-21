@@ -18,6 +18,14 @@ namespace shotodol_platform_net {
 	}
 	[CCode (cname="struct sockaddr", cheader_filename = "shotodol_platform_net.h")]
 	public struct NetStreamAddrPlatformImpl {
+		[CCode (cname="net_stream_sockaddr_rebuild_from", cheader_filename = "shotodol_platform_net.h")]
+		public NetStreamAddrPlatformImpl.build_from(NetStreamAddrPlatformImpl*src);
+		[CCode (cname="net_stream_sockaddr_rebuild_from", cheader_filename = "shotodol_platform_net.h")]
+		public void rebuild_from(NetStreamAddrPlatformImpl*src);
+		[CCode (cname="net_stream_sockaddr_calc_hash", cheader_filename = "shotodol_platform_net.h")]
+		public aroop_hash calcHash();
+		[CCode (cname="net_stream_sockaddr_equals", cheader_filename = "shotodol_platform_net.h")]
+		public bool equals(NetStreamAddrPlatformImpl*other);
 	}
 	[CCode (cname="struct net_stream", cheader_filename = "shotodol_platform_net.h")]
 	public struct NetStreamPlatformImpl {
@@ -32,9 +40,9 @@ namespace shotodol_platform_net {
 		[CCode (cname="net_stream_send", cheader_filename = "shotodol_platform_net.h")]
 		public int write(extring*buf);
 		[CCode (cname="net_stream_recvfrom", cheader_filename = "shotodol_platform_net.h")]
-		public int readFrom(extring*buf, uint*dataPosition);
+		public int readFrom(extring*buf, NetStreamAddrPlatformImpl*src);
 		[CCode (cname="net_stream_sendto", cheader_filename = "shotodol_platform_net.h")]
-		public int writeTo(extring*buf);
+		public int writeTo(extring*buf, NetStreamAddrPlatformImpl*dst);
 		[CCode (cname="net_stream_close", cheader_filename = "shotodol_platform_net.h")]
 		public int close();
 		[CCode (cname="net_stream_get_token", cheader_filename = "shotodol_platform_net.h")]

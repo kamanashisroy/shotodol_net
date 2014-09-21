@@ -56,8 +56,8 @@ int net_stream_send(struct net_stream*strm, struct aroop_txt*buf);
 int net_stream_accept_new(struct net_stream*newone, struct net_stream*from);
 int net_stream_addr_copy_to_extring(struct net_stream*strm, struct sockaddr*addr, struct aroop_txt*buf);
 int net_stream_addr_copy_from_extring(struct net_stream*strm, struct sockaddr*addr, struct aroop_txt*buf);
-int net_stream_recvfrom(struct net_stream*strm, struct aroop_txt*buf, unsigned int*dataPosition);
-int net_stream_sendto(struct net_stream*strm, struct aroop_txt*buf);
+int net_stream_recvfrom(struct net_stream*strm, struct aroop_txt*buf, struct sockaddr*src);
+int net_stream_sendto(struct net_stream*strm, struct aroop_txt*buf, struct sockaddr*dst);
 	
 
 // poll
@@ -69,5 +69,9 @@ struct net_stream*net_stream_poll_next(struct net_stream_poll*spoll);
 #define net_stream_poll_create(x) ({(x)->fdcount = 0;})
 #define net_stream_set_token(x,y) ({(x)->token = y;})
 #define net_stream_get_token(x) ({(x)->token;})
+
+#define net_stream_sockaddr_calc_hash(x) ({opp_get_hash_bin(x,sizeof(*x));})
+#define net_stream_sockaddr_rebuild_from(x,y) ({memcpy((x),(y),sizeof(*x));})
+#define net_stream_sockaddr_equals(x,y) ({!memcmp((x),(y),sizeof(*x));})
 
 #endif //SHOTODOL_PLUGIN_INCLUDE_H

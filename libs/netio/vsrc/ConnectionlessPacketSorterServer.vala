@@ -12,6 +12,7 @@ public class shotodol.netio.ConnectionlessPacketSorterServer : PacketSorterSpind
 	NetOutputStream responder;
 	extring laddr;
 	extring pstack;
+	NetScribe?scribe;
 	/**
 	 * \brief This is vanilla connectionless server (UDP, for example).
 	 *
@@ -20,13 +21,18 @@ public class shotodol.netio.ConnectionlessPacketSorterServer : PacketSorterSpind
 	 * @param stack Protocol stack, for example, sip,rtp etc .
 	 * 
 	 */
-	public ConnectionlessPacketSorterServer(extring*stack, extring*addr) {
+	public ConnectionlessPacketSorterServer(extring*stack, extring*addr, NetScribe?givenScribe = null) {
 		base();
 		laddr = extring.copy_on_demand(addr);
 		pstack = extring.copy_on_demand(stack);
 		server = shotodol_platform_net.NetStreamPlatformImpl();
 		sink = null;
-		responder = new NetOutputStream();
+		responder = new NetOutputStream(false, true, scribe);
+		if(givenScribe != null) {
+			scribe = givenScribe;
+		} else {
+			scribe = new DefaultNetScribe();
+		}
 	}
 
 	~ConnectionlessPacketSorterServer() {
@@ -70,12 +76,15 @@ public class shotodol.netio.ConnectionlessPacketSorterServer : PacketSorterSpind
 		print("[ + ] Incoming data\n");
 #endif
 		xtring pkt = new xtring.alloc(1024/*, TODO set factory */);
-		uint dataPosition = 0;
-		int len = x.readFrom(pkt, &dataPosition);
-		if(len == 0) {
+		extring softpkt = extring.copy_shallow(pkt);
+		softpkt.shift(2); // keep space for 2 bytes of token header
+		shotodol_platform_net.NetStreamAddrPlatformImpl platAddr = shotodol_platform_net.NetStreamAddrPlatformImpl();
+		int len = x.readFrom(&softpkt, &platAddr);
+		if(len <= 0) {
 			//close(); // XXX should we exit here ?
 			return 0;
 		}
+		len += 2;
 		pkt.fly().setLength(len);
 #if CONNECTIONLESS_DEBUG
 		print("trimmed packet to %d data\n", pkt.fly().length());
@@ -83,18 +92,21 @@ public class shotodol.netio.ConnectionlessPacketSorterServer : PacketSorterSpind
 #endif
 		// IMPORTANT trim the pkt here.
 		pkt.shrink(len);
+		aroop_uword16 token = scribe.getToken(&platAddr);
 #if CONNECTIONLESS_DEBUG
 		extring addr = extring.stack(32);
-		shotodol_platform_net.NetStreamAddrPlatformImpl*platAddr = pkt.fly().to_string();
-		server.copyToEXtring(platAddr, &addr);
+		server.copyToEXtring(&platAddr, &addr);
 		//shotodol_platform_net.NetStreamPlatformImpl.copyAddrAs(server, pkt, &addr);
-		print("Read %d bytes(from %u bytes) from %s\n", len, dataPosition, addr.to_string());
+		print("Read %d bytes from %s, token %u\n", len, addr.to_string(), token);
 		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Read bytes ..");
 #endif
-		pkt.fly().shift((int)dataPosition-2); // 2 byte is used for TCP too. So they both have the same header length
 		if(sink == null) {
 			return 0;
 		}
+		uchar ch = (uchar)((token >> 8) & 0xFF);
+		pkt.fly().set_char_at(0, ch);
+		ch = (uchar)(token & 0xFF);
+		pkt.fly().set_char_at(1, ch);
 		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Writing to sink");
 		sink.write(pkt);
 		return 0;

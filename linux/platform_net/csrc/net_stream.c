@@ -221,23 +221,19 @@ int net_stream_send(struct net_stream*strm, struct aroop_txt*buf) {
 	return len;
 }
 
-int net_stream_recvfrom(struct net_stream*strm, struct aroop_txt*buf, unsigned int*dataPosition) {
-	struct sockaddr*anyaddr = (struct sockaddr*)(aroop_txt_to_string(buf)+buf->len);
+int net_stream_recvfrom(struct net_stream*strm, struct aroop_txt*buf, struct sockaddr*anyaddr) {
 	unsigned int addrlen = sizeof(struct sockaddr);
 	if((strm->flags & (NET_STREAM_FLAG_UDP|NET_STREAM_FLAG_TCP))) {
 		addrlen = sizeof(struct sockaddr_in);
 	}
 	unsigned int givenaddrlen = addrlen;
-	*dataPosition = addrlen;
-	int len = recvfrom(strm->sock, aroop_txt_to_string(buf)+buf->len+addrlen, buf->size - buf->len-addrlen, MSG_DONTWAIT, anyaddr, &givenaddrlen);
+	int len = recvfrom(strm->sock, aroop_txt_to_string(buf)+buf->len, buf->size - buf->len, MSG_DONTWAIT, anyaddr, &givenaddrlen);
 	aroop_assert(addrlen >= givenaddrlen);
 	if(len > 0) {
 		struct sockaddr_in*iaddr = (struct sockaddr_in*)anyaddr;
 		char*ip = inet_ntoa((iaddr->sin_addr));
 		printf("Incoming %d bytes of data from %s\n", len, ip);
 		buf->len += len;
-		buf->len += addrlen;
-		return len+addrlen;
 	}
 	if(len < 0) {
 		printf("Error while receiving from [%d]:%s\n", strm->sock, strerror(errno));
@@ -245,16 +241,22 @@ int net_stream_recvfrom(struct net_stream*strm, struct aroop_txt*buf, unsigned i
 	return len;
 }
 
-int net_stream_sendto(struct net_stream*strm, struct aroop_txt*buf) {
+int net_stream_sendto(struct net_stream*strm, struct aroop_txt*buf, struct sockaddr*anyaddr) {
 	unsigned int addrlen = sizeof(struct sockaddr);
 	if((strm->flags & (NET_STREAM_FLAG_UDP|NET_STREAM_FLAG_TCP))) {
 		addrlen = sizeof(struct sockaddr_in);
 	}
-	int len = sendto(strm->sock, aroop_txt_to_string(buf)+addrlen, buf->len - addrlen, MSG_DONTWAIT, aroop_txt_to_string(buf), addrlen);
+	int len = sendto(strm->sock, aroop_txt_to_string(buf), buf->len, MSG_DONTWAIT, anyaddr, addrlen);
+	if(len > 0) {
+		int left = buf->len - len;
+		if(left) {
+			memmove(aroop_txt_to_string(buf), aroop_txt_to_string(buf)+len, left);
+		}
+		buf->len = left;
+	}
 	if(len < 0) {
 		printf("Error while sending [%d]:%s\n", strm->sock, strerror(errno));
 	}
-	// XXX it cannot handle the left over ..
 	return len;
 }
 

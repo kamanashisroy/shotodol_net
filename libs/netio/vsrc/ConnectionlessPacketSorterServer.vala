@@ -77,6 +77,7 @@ public class shotodol.netio.ConnectionlessPacketSorterServer : PacketSorterSpind
 #endif
 		xtring pkt = new xtring.alloc(1024/*, TODO set factory */);
 		extring softpkt = extring.copy_shallow(pkt);
+		softpkt.setLength(2);
 		softpkt.shift(2); // keep space for 2 bytes of token header
 		shotodol_platform_net.NetStreamAddrPlatformImpl platAddr = shotodol_platform_net.NetStreamAddrPlatformImpl();
 		int len = x.readFrom(&softpkt, &platAddr);

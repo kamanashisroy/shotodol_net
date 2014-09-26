@@ -83,6 +83,7 @@ public class shotodol.netio.ConnectionOrientedPacketSorterServer : PacketSorterS
 #endif
 		xtring pkt = new xtring.alloc(1024/*, TODO set factory */);
 		extring softpkt = extring.copy_on_demand(pkt);
+		softpkt.setLength(2);
 		softpkt.shift(2); // keep space for 2 bytes of token header
 		int len = x.read(&softpkt);
 		if(len == 0) {

@@ -27,12 +27,12 @@ public class shotodol.netio.ConnectionlessPacketSorterServer : PacketSorterSpind
 		pstack = extring.copy_on_demand(stack);
 		server = shotodol_platform_net.NetStreamPlatformImpl();
 		sink = null;
-		responder = new NetOutputStream(false, true, scribe);
 		if(givenScribe != null) {
 			scribe = givenScribe;
 		} else {
 			scribe = new DefaultNetScribe();
 		}
+		responder = new NetOutputStream(false, true, scribe);
 	}
 
 	~ConnectionlessPacketSorterServer() {
@@ -63,6 +63,7 @@ public class shotodol.netio.ConnectionlessPacketSorterServer : PacketSorterSpind
 		sockaddr.zero_terminate();
 		int ret = server.connect(&sockaddr, shotodol_platform_net.ConnectFlags.BIND);
 		sockaddr.destroy();
+		responder.updateNetStream(&server);
 		if(ret == 0) {
 			Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Listening");
 			pl.add(&server);
@@ -95,8 +96,10 @@ public class shotodol.netio.ConnectionlessPacketSorterServer : PacketSorterSpind
 		pkt.shrink(len);
 		aroop_uword16 token = scribe.getToken(&platAddr);
 #if CONNECTIONLESS_DEBUG
+		shotodol_platform_net.NetStreamAddrPlatformImpl dupPlatAddr = shotodol_platform_net.NetStreamAddrPlatformImpl();
+		scribe.getAddressAs(token, &dupPlatAddr);
 		extring addr = extring.stack(32);
-		server.copyToEXtring(&platAddr, &addr);
+		server.copyToEXtring(&dupPlatAddr, &addr);
 		//shotodol_platform_net.NetStreamPlatformImpl.copyAddrAs(server, pkt, &addr);
 		print("Read %d bytes from %s, token %u\n", len, addr.to_string(), token);
 		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Read bytes ..");

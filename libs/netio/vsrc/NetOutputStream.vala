@@ -18,6 +18,7 @@ internal class shotodol.netio.NetOutputStream : OutputStream {
 		packets = Queue<xtring>();
 		closed = false;
 		client = shotodol_platform_net.NetStreamPlatformImpl();
+			
 		asyncStream = isAsynchronous;
 		connectionless = isConnectionless;
 		scribe=gscribe;
@@ -26,6 +27,10 @@ internal class shotodol.netio.NetOutputStream : OutputStream {
 	}
 	~NetOutputStream() {
 		client.close();
+	}
+
+	public void updateNetStream(shotodol_platform_net.NetStreamPlatformImpl*given) {
+		client.copy_deep(given);
 	}
 
 	public int process() {
@@ -59,6 +64,12 @@ internal class shotodol.netio.NetOutputStream : OutputStream {
 				token |= buf.char_at(1);
 				if(scribe == null) return 0;
 				scribe.getAddressAs(token, &rawAddr);
+#if CONNECTIONLESS_DEBUG
+				extring addr = extring.stack(32);
+				client.copyToEXtring(&rawAddr, &addr);
+				print("Writing %d bytes to %s, token %u\n", buf.length(), addr.to_string(), token);
+				Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Writing bytes ..");
+#endif
 				buf.shift(2); // skip the token
 				return client.writeTo(buf, &rawAddr);
 			} else {

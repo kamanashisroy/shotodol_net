@@ -31,6 +31,8 @@ namespace shotodol_platform_net {
 	public struct NetStreamPlatformImpl {
 		[CCode (cname="net_stream_empty", cheader_filename = "shotodol_platform_net.h")]
 		public NetStreamPlatformImpl();
+		[CCode (cname="net_stream_copy", cheader_filename = "shotodol_platform_net.h")]
+		public void copy_deep(NetStreamPlatformImpl*src);
 		[CCode (cname="net_stream_create", cheader_filename = "shotodol_platform_net.h")]
 		public int connect(extring*path, aroop_uword8 flags);
 		[CCode (cname="net_stream_accept_new", cheader_filename = "shotodol_platform_net.h")]

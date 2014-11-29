@@ -48,6 +48,7 @@ struct net_stream_poll {
 
 // stream
 #define net_stream_empty(x) ({(x)->sock = -1;})
+#define net_stream_copy(x,y) ({memcpy((x),(y),sizeof(*x));})
 int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8_T flags);
 int net_stream_recv(struct net_stream*strm, struct aroop_txt*buf);
 int net_stream_send(struct net_stream*strm, struct aroop_txt*buf);

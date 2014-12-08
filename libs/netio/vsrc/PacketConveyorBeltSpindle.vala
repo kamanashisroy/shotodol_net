@@ -6,17 +6,17 @@ using shotodol.netio;
  * \addtogroup netio
  * @{
  */
-public abstract class shotodol.netio.PacketSorterSpindle : Spindle {
+public abstract class shotodol.netio.PacketConveyorBeltSpindle : Spindle {
 	protected bool poll;
 	//protected int interval;
 	protected shotodol_platform_net.NetStreamPollPlatformImpl pl;
-	public PacketSorterSpindle() {
+	public PacketConveyorBeltSpindle() {
 		base();
 		//interval = 10;
 		pl = shotodol_platform_net.NetStreamPollPlatformImpl();
 	}
 
-	~PacketSorterSpindle() {
+	~PacketConveyorBeltSpindle() {
 	}
 	public override int step() {
 		if(!poll) {

@@ -3,23 +3,19 @@ using shotodol;
 using shotodol.router;
 
 /***
- * \addtogroup netio
+ * \addtogroup router
  * @{
  */
-public class shotodol.router.RouterSink : OutputStream {
-	uint wpos;
-	aroop_uword16 count;
-	OutputStream sink[64];
-	bool zeroToRoundRobin;
-	aroop_uword16 roundIndex;
-	public RouterSink(uint givenWpos, bool isZeroToRoundRobin = false) {
+public class shotodol.router.SimplePacketSorter : OutputStream {
+	protected uint wpos;
+	protected aroop_uword16 count;
+	protected OutputStream sink[64];
+	public SimplePacketSorter(uint givenWpos) {
 		wpos = givenWpos;
 		count = 0;
-		zeroToRoundRobin = isZeroToRoundRobin;
-		roundIndex = 0;
 	}
 
-	~RouterSink() {
+	~SimplePacketSorter() {
 	}
 
 	public int addSink(OutputStream givenSink) {
@@ -27,6 +23,10 @@ public class shotodol.router.RouterSink : OutputStream {
 			return -1;
 		sink[count++] = givenSink;
 		return (int)count-1;
+	}
+
+	public virtual aroop_uword16 resolveZero(extring*buf) {
+		return 0;
 	}
 
 	public override int write(extring*buf) throws IOStreamError.OutputStreamError {
@@ -38,11 +38,7 @@ public class shotodol.router.RouterSink : OutputStream {
 		x = x << 8;
 		x |= buf.char_at(wpos + 1);
 		if(x == 0) {
-			if(zeroToRoundRobin) {
-				x = roundIndex + 1;
-				x = x%count;
-				roundIndex = x;
-			}
+			x = resolveZero(buf);
 		} else {
 			x = x%count;
 		}

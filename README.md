@@ -1,7 +1,7 @@
 Shotodol net
 =============
 
-This is a collection of modules to write net application using shotodol.
+This is a collection of modules to write network application using shotodol.
 
 Dependencies
 ============

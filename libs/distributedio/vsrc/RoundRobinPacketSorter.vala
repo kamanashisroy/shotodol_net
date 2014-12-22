@@ -1,12 +1,12 @@
 using aroop;
 using shotodol;
-using shotodol.router;
+using shotodol.distributedio;
 
 /***
- * \addtogroup router
+ * \addtogroup distributedio
  * @{
  */
-public class shotodol.router.RoundRobinPacketSorter : SimplePacketSorter {
+public class shotodol.distributedio.RoundRobinPacketSorter : SimplePacketSorter {
 	aroop_uword16 roundIndex;
 	public RoundRobinPacketSorter(uint givenWpos) {
 		roundIndex = 0;

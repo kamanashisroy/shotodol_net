@@ -1,12 +1,12 @@
 using aroop;
 using shotodol;
-using shotodol.router;
+using shotodol.distributedio;
 
 /***
- * \addtogroup router
+ * \addtogroup distributedio
  * @{
  */
-public class shotodol.router.SimplePacketSorter : OutputStream {
+public class shotodol.distributedio.SimplePacketSorter : OutputStream {
 	protected uint wpos;
 	protected aroop_uword16 count;
 	protected OutputStream sink[64];

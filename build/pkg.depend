@@ -1,4 +1,4 @@
 OS_PLATFORM/platform_net
 libs/netio
-libs/router
+libs/distributedio
 apps/net_echo

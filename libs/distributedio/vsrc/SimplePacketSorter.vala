@@ -21,7 +21,9 @@ public class shotodol.distributedio.SimplePacketSorter : OutputStream {
 	public int addSink(OutputStream givenSink) {
 		if(count >= 64)
 			return -1;
-		sink[count++] = givenSink;
+		//sink[count++] = givenSink;
+		sink[count] = givenSink;
+		count++;
 		return (int)count-1;
 	}
 

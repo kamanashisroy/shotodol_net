@@ -4,7 +4,7 @@ using shotodol;
 /** \addtogroup net_echo
  *  @{
  */
-internal abstract class shotodol.NetEchoService : NetEchoSpindle {
+internal abstract class shotodol.NetEchoService : NetEchoFiber {
 	protected long recv_bytes;
 	protected long sent_bytes;
 	public NetEchoService() {

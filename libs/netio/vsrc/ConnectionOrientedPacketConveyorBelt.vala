@@ -6,7 +6,7 @@ using shotodol.netio;
  * \addtogroup netio
  * @{
  */
-public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyorBeltSpindle {
+public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyorBeltFiber {
 	OutputStream?sink;
 	shotodol_platform_net.NetStreamPlatformImpl server = shotodol_platform_net.NetStreamPlatformImpl();
 	CompositeOutputStream responders;
@@ -44,7 +44,7 @@ public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyo
 		server.close();
 	}
 
-	public override int start(Spindle?plr) {
+	public override int start(Fiber?plr) {
 		extring rpt = extring.stack(128);
 		rpt.printf("Shotodol connection oriented server listening spindle starts at %s", laddr.to_string());
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, &rpt);
@@ -154,7 +154,7 @@ public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyo
 	public void registerAllHooks(Module mod) {
 		registerOutputSink(mod);
 		registerRehashHook(mod);
-		extring entry = extring.set_static_string("MainSpindle");
+		extring entry = extring.set_static_string("MainFiber");
 		Plugin.register(&entry, new AnyInterfaceExtension(this, mod));
 	}
 	public int rehashHook(extring*inmsg, extring*outmsg) {

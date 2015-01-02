@@ -4,19 +4,19 @@ using shotodol;
 /** \addtogroup net_echo
  *  @{
  */
-internal abstract class shotodol.NetEchoSpindle : Spindle {
+internal abstract class shotodol.NetEchoFiber : Fiber {
 	protected bool poll;
 	protected int interval;
 	protected shotodol_platform_net.NetStreamPollPlatformImpl pl;
-	public NetEchoSpindle() {
+	public NetEchoFiber() {
 		base();
 		interval = 10;
 		pl = shotodol_platform_net.NetStreamPollPlatformImpl();
 		poll = false;
 	}
-	~NetEchoSpindle() {
+	~NetEchoFiber() {
 	}
-	public override int start(Spindle?plr) {
+	public override int start(Fiber?plr) {
 		print("Echo service is up ..\n");
 		return 0;
 	}

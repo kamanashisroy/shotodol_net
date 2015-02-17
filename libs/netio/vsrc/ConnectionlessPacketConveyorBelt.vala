@@ -120,24 +120,24 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 		extring entry = extring.stack(128);
 		entry.concat(&pstack);
 		entry.concat_string("/connectionless/output/sink");
-		Plugin.register(&entry, new AnyInterfaceExtension(responder, mod));
+		PluginManager.register(&entry, new AnyInterfaceExtension(responder, mod));
 	}
 	public void registerRehashHook(Module mod) {
 		extring entry = extring.set_static_string("rehash");
-		Plugin.register(&entry, new HookExtension(rehashHook, mod));
+		PluginManager.register(&entry, new HookExtension(rehashHook, mod));
 	}
 	public void registerAllHooks(Module mod) {
 		registerOutputSink(mod);
 		registerRehashHook(mod);
 		extring entry = extring.set_static_string("MainFiber");
-		Plugin.register(&entry, new AnyInterfaceExtension(this, mod));
+		PluginManager.register(&entry, new AnyInterfaceExtension(this, mod));
 	}
 	public int rehashHook(extring*inmsg, extring*outmsg) {
 		sink = null;
 		extring entry = extring.stack(128);
 		entry.concat(&pstack);
 		entry.concat_string("/connectionless/input/sink");
-		Plugin.acceptVisitor(&entry, (x) => {
+		PluginManager.acceptVisitor(&entry, (x) => {
 			sink = (OutputStream)x.getInterface(null);
 		});
 		return 0;

@@ -20,7 +20,7 @@ public class shotodol.NetEchoModule : DynamicModule {
 	}
 	public override int init() {
 		extring command = extring.set_static_string("command");
-		Plugin.register(&command, new M100Extension(new NetEchoCommand(this), this));
+		PluginManager.register(&command, new M100Extension(new NetEchoCommand(this), this));
 		return 0;
 	}
 	public override int deinit() {

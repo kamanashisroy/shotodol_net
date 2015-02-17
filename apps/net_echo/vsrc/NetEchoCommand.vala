@@ -83,9 +83,9 @@ internal class shotodol.NetEchoCommand : M100Command {
 				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 			}
 			extring entry = extring.set_static_string("MainSpindle");
-			Plugin.register(&entry, new AnyInterfaceExtension(sp, module));
+			PluginManager.register(&entry, new AnyInterfaceExtension(sp, module));
 			// TODO rehash
-			//Plugin.swarm(rehash);
+			//PluginManager.swarm(rehash);
 		}
 		arg = vals[Options.BLUE_TEST_SEND];
 		if(arg != null) {
@@ -98,9 +98,9 @@ internal class shotodol.NetEchoCommand : M100Command {
 				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 			}
 			extring entry = extring.set_static_string("MainSpindle");
-			Plugin.register(&entry, new AnyInterfaceExtension(sp, module));
+			PluginManager.register(&entry, new AnyInterfaceExtension(sp, module));
 			// TODO rehash
-			//Plugin.swarm(rehash);
+			//PluginManager.swarm(rehash);
 		}
 		return 0;
 	}

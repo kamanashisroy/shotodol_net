@@ -29,7 +29,9 @@ public class shotodol.netio.DefaultNetScribe : shotodol.netio.NetScribe {
 	public override aroop_uword16 getToken(NetStreamAddrPlatformImpl*platAddr/*extring*address*/) {
 		NetAddr?entry = null;
 #if CONNECTION_ORIENTED_DEBUG
-		print("Searching address hash %ul\n", platAddr.calcHash());
+		extring dlg = extring.stack(512);
+		dlg.printf("Searching address hash %ul\n", platAddr.calcHash());
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.WatchdogSeverity.LOG, 0, 20, &dlg);
 #endif
 		entry = addrs.search(platAddr.calcHash(), (data) => {
 			unowned NetAddr naddr = ((NetAddr)data);
@@ -53,7 +55,7 @@ public class shotodol.netio.DefaultNetScribe : shotodol.netio.NetScribe {
 		if(entry == null)
 			return;
 #if CONNECTION_ORIENTED_DEBUG
-		print("Found\n");
+		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.WatchdogSeverity.LOG, 0, 20, " ~~~ found\n");
 #endif
 		platAddr.rebuild_from(&entry.rawAddr);
 	}

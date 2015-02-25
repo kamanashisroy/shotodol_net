@@ -83,14 +83,14 @@ public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyo
 #endif
 		xtring pkt = new xtring.alloc(1024/*, TODO set factory */);
 		extring softpkt = extring.copy_on_demand(pkt);
-		softpkt.setLength(2);
+		softpkt.set_length(2);
 		softpkt.shift(2); // keep space for 2 bytes of token header
 		int len = x.read(&softpkt);
 		if(len == 0) {
 			return closeClient(token);
 		}
 		len+=2;
-		pkt.fly().setLength(len);
+		pkt.fly().set_length(len);
 #if CONNECTION_ORIENTED_DEBUG
 		print("trimmed packet to %d data\n", pkt.fly().length());
 		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Reading ..");

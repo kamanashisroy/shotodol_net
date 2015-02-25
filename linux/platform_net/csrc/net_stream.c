@@ -80,7 +80,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 			if(aroop_txt_char_at(&addrstr, i) == ':') {
 				aroop_txt_embeded_txt_copy_shallow(&portstr, &addrstr);
 				aroop_txt_shift(&portstr, i+1);
-				aroop_txt_trim_to_length(&addrstr, i);
+				aroop_txt_truncate(&addrstr, i);
 				break;
 			}
 		}
@@ -96,7 +96,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 	  //bacpy(&strm->sbt.sco_bdaddr, &adapter->addr);
 		struct aroop_txt srcaddr;
 		aroop_txt_embeded_stackbuffer_from_txt(&srcaddr,&addrstr);
-		aroop_txt_trim_to_length(&srcaddr,17);
+		aroop_txt_truncate(&srcaddr,17);
 		aroop_txt_zero_terminate(&srcaddr);
 		str2ba(srcaddr.str, &strm->addr.bt.sco_bdaddr);
 		printf("sco listen at %s\n", srcaddr.str);
@@ -115,7 +115,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 	  //bacpy(&strm->sbt.sco_bdaddr, &adapter->addr);
 		struct aroop_txt srcaddr;
 		aroop_txt_embeded_stackbuffer_from_txt(&srcaddr,&addrstr);
-		aroop_txt_trim_to_length(&srcaddr,17);
+		aroop_txt_truncate(&srcaddr,17);
 		aroop_txt_zero_terminate(&srcaddr);
 		str2ba(srcaddr.str, &strm->addr.btrc.rc_bdaddr);
 		printf("rc listen at %s\n", srcaddr.str);
@@ -270,7 +270,7 @@ int net_stream_addr_copy_from_extring(struct net_stream*strm, struct sockaddr*ad
 			if(aroop_txt_char_at(&addrstr, i) == ':') {
 				aroop_txt_embeded_txt_copy_shallow(&portstr, &addrstr);
 				aroop_txt_shift(&portstr, i+1);
-				aroop_txt_trim_to_length(&addrstr, i);
+				aroop_txt_truncate(&addrstr, i);
 				break;
 			}
 		}

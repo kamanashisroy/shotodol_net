@@ -80,7 +80,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 #endif
 		xtring pkt = new xtring.alloc(1024/*, TODO set factory */);
 		extring softpkt = extring.copy_shallow(pkt);
-		softpkt.setLength(2);
+		softpkt.set_length(2);
 		softpkt.shift(2); // keep space for 2 bytes of token header
 		shotodol_platform_net.NetStreamAddrPlatformImpl platAddr = shotodol_platform_net.NetStreamAddrPlatformImpl();
 		int len = x.readFrom(&softpkt, &platAddr);
@@ -89,7 +89,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 			return 0;
 		}
 		len += 2;
-		pkt.fly().setLength(len);
+		pkt.fly().set_length(len);
 #if CONNECTIONLESS_DEBUG
 		dlg.printf("trimmed packet to %d data\n", pkt.fly().length());
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.WatchdogSeverity.LOG, 0, 20, &dlg);

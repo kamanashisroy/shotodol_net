@@ -7,6 +7,10 @@ Netio is the decoupling module for networking. This module is statically linked.
 Opening a socket
 =================
 
+
+![connectionless](../../docs/diagrams/connectionless.svg)
+![connectionoriented](../../docs/diagrams/connectionoriented.svg)
+
 Data communication is done in sinks. These sinks are like gstreamer sinks. And these sinks are of OutputStream type. The sinks are created when the Connection conveyor-belt is created. For example, for http server the following code with listen for incoming connections.
 
 ```vala

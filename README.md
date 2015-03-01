@@ -58,5 +58,6 @@ Now you can easily build shotodol\_net like,
 Modules
 =========
 - [netio](libs/netio/README.md)
+- [distributedio](libs/distributedio/README.md)
 
 Enjoy !

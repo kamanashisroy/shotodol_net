@@ -28,12 +28,40 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
      id="defs4148">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect5312"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect5307"
+       is_visible="true" />
+    <inkscape:path-effect
+       is_visible="true"
+       id="path-effect5293"
+       effect="spiro" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect5280"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect5272"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect5255"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect5249"
+       is_visible="true" />
     <inkscape:path-effect
        effect="spiro"
        id="path-effect7647"
@@ -270,7 +298,7 @@
      showgrid="false"
      inkscape:zoom="0.75581395"
      inkscape:cx="434.17278"
-     inkscape:cy="459.97985"
+     inkscape:cy="232.17284"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -435,56 +463,56 @@ polygon {
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="422.26154"
-     y="536.39996"
+     x="292.90768"
+     y="354.15381"
      id="text3224"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan3226"
        style="stroke:#000000"
-       x="422.26154"
-       y="536.39996">x/</tspan><tspan
+       x="292.90768"
+       y="354.15381">x/</tspan><tspan
        sodipodi:role="line"
        style="stroke:#000000"
-       x="422.26154"
-       y="561.39996"
+       x="292.90768"
+       y="379.15381"
        id="tspan3228">connectionless/</tspan><tspan
        sodipodi:role="line"
        style="stroke:#000000"
-       x="422.26154"
-       y="586.39996"
+       x="292.90768"
+       y="404.15381"
        id="tspan3230">output/</tspan><tspan
        sodipodi:role="line"
        style="stroke:#000000"
-       x="422.26154"
-       y="611.39996"
+       x="292.90768"
+       y="429.15381"
        id="tspan3232">sink</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="928.73553"
-     y="536.35608"
+     x="1034.2739"
+     y="355.12531"
      id="text3224-7"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan3226-0"
        style="text-align:end;text-anchor:end;stroke:#000000"
-       x="928.73553"
-       y="536.35608">x/</tspan><tspan
+       x="1034.2739"
+       y="355.12531">x/</tspan><tspan
        sodipodi:role="line"
        style="text-align:end;text-anchor:end;stroke:#000000"
-       x="928.73553"
-       y="561.35608"
+       x="1034.2739"
+       y="380.12531"
        id="tspan3228-7">connectionless/</tspan><tspan
        sodipodi:role="line"
        style="text-align:end;text-anchor:end;stroke:#000000"
-       x="928.73553"
-       y="586.35608"
+       x="1034.2739"
+       y="405.12531"
        id="tspan3230-3">input/</tspan><tspan
        sodipodi:role="line"
        style="text-align:end;text-anchor:end;stroke:#000000"
-       x="928.73553"
-       y="611.35608"
+       x="1034.2739"
+       y="430.12531"
        id="tspan3232-5">sink</tspan></text>
   <g
      id="g20018"
@@ -556,14 +584,14 @@ polygon {
        sodipodi:linespacing="125%"
        id="text5950-83-2"
        y="183.10326"
-       x="568.62903"
+       x="552.62903"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
        xml:space="preserve"><tspan
          y="183.10326"
-         x="568.62903"
+         x="552.62903"
          style="stroke:#000000"
          id="tspan5952-5-5"
-         sodipodi:role="line">InputStream</tspan></text>
+         sodipodi:role="line">OutputStream</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5975-9-8"
@@ -575,7 +603,7 @@ polygon {
          x="497.61365"
          style="stroke:#000000"
          id="tspan5977-7-9"
-         sodipodi:role="line">+ virtual read(</tspan><tspan
+         sodipodi:role="line">+ virtual write(</tspan><tspan
          y="249.7648"
          x="497.61365"
          style="stroke:#000000"
@@ -609,7 +637,7 @@ polygon {
   <g
      style="stroke:#000000"
      id="g7525"
-     transform="translate(12.56644,139.80104)">
+     transform="translate(12.56644,79.80104)">
     <rect
        x="545.86053"
        y="139.42201"
@@ -624,12 +652,12 @@ polygon {
          style="stroke:#000000"
          id="g7531">
         <polygon
-           points="375,240 380,235 590,235 585,240 "
+           points="585,240 375,240 380,235 590,235 "
            id="polygon7533"
            transform="translate(170.86059,-100.57799)"
            style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
         <polygon
-           points="585,240 590,235 590,365 585,370 "
+           points="585,370 585,240 590,235 590,365 "
            id="polygon7535"
            transform="translate(170.86059,-100.57799)"
            style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
@@ -662,55 +690,28 @@ polygon {
       </g>
     </g>
   </g>
-  <g
-     id="g7622"
-     transform="translate(282,445)"
-     style="stroke:#000000">
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m -14.67732,-130.89935 c 6.4530743,-1.93335 13.6064719,-1.42418 19.7206455,1.4037 6.1141735,2.82788 11.1344185,7.94916 13.8399225,14.11846 2.705505,6.1693 3.072061,13.33142 1.010532,19.744694 -2.061528,6.413275 -6.532698,12.020324 -12.32622,15.457636 -6.3327066,3.757212 -14.1853856,4.86083 -21.3084,2.99469"
-       id="path7545"
-       inkscape:path-effect="#path-effect7598"
-       inkscape:original-d="m -14.67732,-130.89935 c 26.68583,0.16077 49.34857,37.24947 22.24488,50.72449 -5.35928,2.66443 -15.24699,2.14282 -21.3084,2.99469"
-       inkscape:connector-curvature="0" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2.65547109px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 275.51799,-104.95411 -253.98844,0"
-       id="path7547"
-       inkscape:path-effect="#path-effect7595"
-       inkscape:original-d="m 275.51799,-104.95411 -253.98844,0"
-       inkscape:connector-curvature="0" />
-  </g>
-  <g
-     id="g7616"
-     style="stroke:#000000"
-     transform="translate(280,445)">
-    <path
-       transform="matrix(-1,0,0,-1,1097.1984,-76.63453)"
-       sodipodi:type="arc"
-       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-       id="path7551"
-       sodipodi:cx="294.23257"
-       sodipodi:cy="27.077484"
-       sodipodi:rx="15.436685"
-       sodipodi:ry="14.968906"
-       d="m 309.66926,27.077484 c 0,8.267099 -6.91124,14.968907 -15.43669,14.968907 -8.52544,0 -15.43668,-6.701808 -15.43668,-14.968907 0,-8.267099 6.91124,-14.968906 15.43668,-14.968906 8.52545,0 15.43669,6.701807 15.43669,14.968906 z" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2.58508563px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 787.67646,-103.96264 -300.09667,0"
-       id="path7553"
-       inkscape:path-effect="#path-effect7587"
-       inkscape:original-d="m 787.67646,-103.96264 -300.09667,0"
-       inkscape:connector-curvature="0" />
-  </g>
+  <path
+     inkscape:connector-curvature="0"
+     inkscape:original-d="m 493.32268,254.10065 c 26.68583,0.16077 49.34857,37.24947 22.24488,50.72449 -5.35928,2.66443 -15.24699,2.14282 -21.3084,2.99469"
+     inkscape:path-effect="#path-effect7598"
+     id="path7545"
+     d="m 493.32268,254.10065 c 6.45307,-1.93335 13.60647,-1.42418 19.72065,1.4037 6.11417,2.82788 11.13441,7.94916 13.83992,14.11846 2.7055,6.1693 3.07206,13.33142 1.01053,19.74469 -2.06153,6.41328 -6.5327,12.02033 -12.32622,15.45764 -6.33271,3.75721 -14.18539,4.86083 -21.3084,2.99469"
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     inkscape:connector-curvature="0"
+     inkscape:original-d="m 556.00405,280.04589 -26.4745,0"
+     inkscape:path-effect="#path-effect7595"
+     id="path7547"
+     d="m 556.00405,280.04589 -26.4745,0"
+     style="fill:none;stroke:#000000;stroke-width:0.85733098px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
   <text
      sodipodi:linespacing="125%"
      id="text7555"
-     y="325.13843"
+     y="265.13843"
      x="658.31885"
      style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
      xml:space="preserve"><tspan
-       y="325.13843"
+       y="265.13843"
        x="658.31885"
        style="text-align:center;text-anchor:middle;stroke:#000000"
        sodipodi:role="line"
@@ -719,36 +720,206 @@ polygon {
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
      x="606.10767"
-     y="379.41541"
+     y="319.41541"
      id="text7582"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan7584"
        style="stroke:#000000"
        x="606.10767"
-       y="379.41541">X protocol</tspan></text>
+       y="319.41541">X protocol</tspan></text>
+  <g
+     id="g6089"
+     transform="matrix(0.52286425,0,0,0.52286425,-602.28992,526.48521)"
+     style="stroke:#000000">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:8.25053596"
+       id="rect4044-5-4-2-4-6-7-3"
+       height="1062.2635"
+       width="1749.4226"
+       y="-80.691704"
+       x="1527.1483" />
+    <g
+       transform="matrix(8.3305836,0,0,8.1712578,-3020.1884,-1219.9449)"
+       style="stroke:#000000"
+       id="g3301-9-0-7-7-3-3">
+      <polygon
+         points="590,235 585,240 375,240 380,235 "
+         id="polygon4046-6-2-15-7-7-8-4"
+         transform="translate(170.86059,-100.57799)"
+         style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
+      <polygon
+         points="590,365 585,370 585,240 590,235 "
+         id="polygon4048-6-0-8-5-5-5-3"
+         transform="translate(170.86059,-100.57799)"
+         style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
+    </g>
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="1026.7847"
+     y="559.96924"
+     id="text5136"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan5138"
+       style="stroke:#000000"
+       x="1026.7847"
+       y="559.96924">netio</tspan></text>
+  <g
+     id="g4274-8-3-5-4-4-5-0-3-3-6"
+     transform="matrix(0.31371855,0,0,0.31371855,913.30459,468.31681)"
+     style="stroke:#000000">
+    <rect
+       id="rect4090-5-5-8-8-9-4-1-1-7-6"
+       height="40"
+       width="105"
+       y="130"
+       x="395"
+       style="fill:#ffffff;stroke:#000000" />
+    <rect
+       id="rect4092-1-9-4-9-9-1-8-9-6-5"
+       height="8"
+       width="20"
+       y="138"
+       x="385"
+       style="fill:#ffffff;stroke:#000000" />
+    <rect
+       id="rect4094-3-4-9-7-2-7-4-4-1-9"
+       height="8"
+       width="20"
+       y="154"
+       x="385"
+       style="fill:#ffffff;stroke:#000000" />
+  </g>
+  <rect
+     style="opacity:0.98999999;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.1616745;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+     id="rect4959-8-0-9"
+     width="49.020771"
+     height="40.048096"
+     x="471.52234"
+     y="450.25287" />
+  <g
+     id="g5282">
+    <path
+       transform="matrix(0,1,-1,0,523.6724,88.6845)"
+       sodipodi:type="arc"
+       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+       id="path7551"
+       sodipodi:cx="294.23257"
+       sodipodi:cy="27.077484"
+       sodipodi:rx="15.436685"
+       sodipodi:ry="14.968906"
+       d="m 309.66926,27.077484 a 15.436685,14.968906 0 1 1 -30.87337,0 15.436685,14.968906 0 1 1 30.87337,0 z" />
+    <path
+       transform="translate(165,100)"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 330.76923,296.12307 0,54.24616"
+       inkscape:path-effect="#path-effect5249"
+       id="path5247"
+       d="m 330.76923,296.12307 0,54.24616"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  </g>
+  <g
+     id="g5314">
+    <polygon
+       points="285,150 290,147.5 290,152.5 "
+       style="fill:#000000;stroke:none"
+       id="polygon7637"
+       transform="matrix(0,4,-4,0,1094.7231,-826.1743)" />
+    <path
+       transform="translate(165,100)"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 329.44616,226 0,42.33846"
+       inkscape:path-effect="#path-effect5255"
+       id="path5253"
+       d="m 329.44616,226 0,42.33846"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  </g>
   <polygon
-     transform="matrix(0,4,-4,0,878.72308,-764.1743)"
-     id="polygon7637"
+     points="290,152.5 285,150 290,147.5 "
      style="fill:#000000;stroke:none"
-     points="290,152.5 285,150 290,147.5 " />
+     id="polygon5268"
+     transform="matrix(0,4,-4,0,1094.7231,-650.1743)" />
   <path
      style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     d="m 276.96923,387.35385 206.4,343.99995"
-     id="path7639"
-     inkscape:path-effect="#path-effect7641"
-     inkscape:original-d="m 276.96923,387.35385 206.4,343.99995"
-     inkscape:connector-curvature="0" />
+     d="m 329.44616,404.61538 0,222.27693"
+     id="path5270"
+     inkscape:path-effect="#path-effect5272"
+     inkscape:original-d="m 329.44616,404.61538 0,222.27693"
+     inkscape:connector-curvature="0"
+     transform="translate(165,100)" />
+  <rect
+     y="452.25287"
+     x="811.52234"
+     height="40.048096"
+     width="49.020771"
+     id="rect5274"
+     style="opacity:0.98999999;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.1616745;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none" />
   <polygon
-     points="285,150 290,147.5 290,152.5 "
+     transform="matrix(0,4,-4,0,1434.7231,-648.1743)"
+     id="polygon5276"
      style="fill:#000000;stroke:none"
-     id="polygon7643"
-     transform="matrix(4,0,0,-4,-295.2769,1341.8257)" />
+     points="285,150 290,147.5 290,152.5 " />
   <path
      style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     d="M 1078.7539,355.6 859.12308,748.5539"
-     id="path7645"
-     inkscape:path-effect="#path-effect7647"
-     inkscape:original-d="M 1078.7539,355.6 859.12308,748.5539"
+     d="m 669.47693,407.26154 0,231.53846"
+     id="path5278"
+     inkscape:path-effect="#path-effect5280"
+     inkscape:original-d="m 669.47693,407.26154 0,231.53846"
+     inkscape:connector-curvature="0"
+     transform="translate(165,100)" />
+  <g
+     id="g5296">
+    <path
+       d="m 309.66926,27.077484 a 15.436685,14.968906 0 1 1 -30.87337,0 15.436685,14.968906 0 1 1 30.87337,0 z"
+       sodipodi:ry="14.968906"
+       sodipodi:rx="15.436685"
+       sodipodi:cy="27.077484"
+       sodipodi:cx="294.23257"
+       id="path5288"
+       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:type="arc"
+       transform="matrix(-1,0,0,-1,1122.8352,308.00229)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.89813364px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 815.39663,280.09912 -43.75734,0"
+       id="path5290"
+       inkscape:path-effect="#path-effect5293"
+       inkscape:original-d="m 815.39663,280.09912 -43.75734,0"
+       inkscape:connector-curvature="0" />
+  </g>
+  <path
+     style="fill:none;stroke:#000000;stroke-width:0.89813364px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 835.03908,407.39297 0,43.75734"
+     id="path5304"
+     inkscape:path-effect="#path-effect5307"
+     inkscape:original-d="m 835.03908,407.39297 0,43.75734"
      inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 859.99464,370.88188 c 1.93335,6.45307 1.42418,13.60647 -1.4037,19.72065 -2.82788,6.11417 -7.94916,11.13441 -14.11846,13.83992 -6.1693,2.7055 -13.33142,3.07206 -19.74469,1.01053 -6.41328,-2.06153 -12.02033,-6.5327 -15.45764,-12.32622 -3.75721,-6.33271 -4.86083,-14.18539 -2.99469,-21.3084"
+     id="path5310"
+     inkscape:path-effect="#path-effect5312"
+     inkscape:original-d="m 859.99464,370.88188 c -0.16077,26.68583 -37.24947,49.34857 -50.72449,22.24488 -2.66443,-5.35928 -2.14282,-15.24699 -2.99469,-21.3084"
+     inkscape:connector-curvature="0" />
+  <g
+     id="g5318"
+     transform="translate(340,0)"
+     style="stroke:#000000">
+    <polygon
+       transform="matrix(0,4,-4,0,1094.7231,-826.1743)"
+       id="polygon5320"
+       style="fill:#000000;stroke:none"
+       points="290,147.5 290,152.5 285,150 " />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 329.44616,226 0,42.33846"
+       id="path5322"
+       inkscape:path-effect="#path-effect5255"
+       inkscape:original-d="m 329.44616,226 0,42.33846"
+       inkscape:connector-curvature="0"
+       transform="translate(165,100)" />
+  </g>
 </svg>

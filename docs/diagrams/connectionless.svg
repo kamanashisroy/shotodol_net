@@ -28,7 +28,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -430,7 +430,7 @@ polygon {
          x="378.31885"
          style="text-align:center;text-anchor:middle;stroke:#000000"
          sodipodi:role="line"
-         id="tspan3591">&lt; connectionless&gt;</tspan></text>
+         id="tspan3591">&lt;connectionless&gt;</tspan></text>
   </g>
   <g
      id="g20018"
@@ -502,14 +502,14 @@ polygon {
        sodipodi:linespacing="125%"
        id="text5950-83-2"
        y="183.10326"
-       x="568.62903"
+       x="552.62903"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
        xml:space="preserve"><tspan
          y="183.10326"
-         x="568.62903"
+         x="552.62903"
          style="stroke:#000000"
          id="tspan5952-5-5"
-         sodipodi:role="line">InputStream</tspan></text>
+         sodipodi:role="line">OutputStream</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5975-9-8"
@@ -521,7 +521,7 @@ polygon {
          x="497.61365"
          style="stroke:#000000"
          id="tspan5977-7-9"
-         sodipodi:role="line">+ virtual read(</tspan><tspan
+         sodipodi:role="line">+ virtual write(</tspan><tspan
          y="249.7648"
          x="497.61365"
          style="stroke:#000000"

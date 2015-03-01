@@ -12,7 +12,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="165 100 1000 1200"
+   viewBox="165 100 1200 1200"
    id="svg4022"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
@@ -28,12 +28,20 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
      id="defs4148">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect10528"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect10522"
+       is_visible="true" />
     <inkscape:path-effect
        is_visible="true"
        id="path-effect15294"
@@ -318,7 +326,7 @@
      showgrid="false"
      inkscape:zoom="0.53444117"
      inkscape:cx="434.17278"
-     inkscape:cy="461.90597"
+     inkscape:cy="230.50516"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -387,12 +395,12 @@ polygon {
            style="stroke:#000000"
            id="g3301-9-0-9-7">
           <polygon
-             points="585,240 375,240 380,235 590,235 "
+             points="590,235 585,240 375,240 380,235 "
              id="polygon4046-6-2-15-5-3"
              transform="translate(170.86059,-100.57799)"
              style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
           <polygon
-             points="585,370 585,240 590,235 590,365 "
+             points="590,365 585,370 585,240 590,235 "
              id="polygon4048-6-0-8-4-0"
              transform="translate(170.86059,-100.57799)"
              style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
@@ -446,7 +454,7 @@ polygon {
      transform="translate(196,959)"
      style="stroke:#000000">
     <path
-       d="m 309.66926,27.077484 c 0,8.267099 -6.91124,14.968907 -15.43669,14.968907 -8.52544,0 -15.43668,-6.701808 -15.43668,-14.968907 0,-8.267099 6.91124,-14.968906 15.43668,-14.968906 8.52545,0 15.43669,6.701807 15.43669,14.968906 z"
+       d="m 309.66926,27.077484 a 15.436685,14.968906 0 1 1 -30.87337,0 15.436685,14.968906 0 1 1 30.87337,0 z"
        sodipodi:ry="14.968906"
        sodipodi:rx="15.436685"
        sodipodi:cy="27.077484"
@@ -474,7 +482,7 @@ polygon {
        sodipodi:role="line"
        style="text-align:center;text-anchor:middle;stroke:#000000"
        x="658.31885"
-       y="969.13843">&lt;connectionless&gt;</tspan></text>
+       y="969.13843">&lt;conveyor&gt;</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
@@ -486,7 +494,7 @@ polygon {
        id="tspan3226"
        style="stroke:#000000"
        x="252.90768"
-       y="498.15381">x/</tspan><tspan
+       y="498.15381">echo/</tspan><tspan
        sodipodi:role="line"
        style="stroke:#000000"
        x="252.90768"
@@ -513,7 +521,7 @@ polygon {
        id="tspan3226-0"
        style="text-align:end;text-anchor:end;stroke:#000000"
        x="1074.2739"
-       y="499.12531">x/</tspan><tspan
+       y="499.12531">echo/</tspan><tspan
        sodipodi:role="line"
        style="text-align:end;text-anchor:end;stroke:#000000"
        x="1074.2739"
@@ -667,12 +675,12 @@ polygon {
          style="stroke:#000000"
          id="g7531">
         <polygon
-           points="380,235 590,235 585,240 375,240 "
+           points="375,240 380,235 590,235 585,240 "
            id="polygon7533"
            transform="translate(170.86059,-100.57799)"
            style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
         <polygon
-           points="590,235 590,365 585,370 585,240 "
+           points="585,240 590,235 590,365 585,370 "
            id="polygon7535"
            transform="translate(170.86059,-100.57799)"
            style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
@@ -734,15 +742,15 @@ polygon {
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="606.10767"
+     x="600.10767"
      y="463.41541"
      id="text7582"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan7584"
        style="stroke:#000000"
-       x="606.10767"
-       y="463.41541">X protocol</tspan></text>
+       x="600.10767"
+       y="463.41541">Echo protocol</tspan></text>
   <g
      id="g6089"
      transform="matrix(0.52286425,0,0,0.39396625,-602.28992,897.00785)"
@@ -759,12 +767,12 @@ polygon {
        style="stroke:#000000"
        id="g3301-9-0-7-7-3-3">
       <polygon
-         points="375,240 380,235 590,235 585,240 "
+         points="585,240 375,240 380,235 590,235 "
          id="polygon4046-6-2-15-7-7-8-4"
          transform="translate(170.86059,-100.57799)"
          style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
       <polygon
-         points="585,240 590,235 590,365 585,370 "
+         points="585,370 585,240 590,235 590,365 "
          id="polygon4048-6-0-8-5-5-5-3"
          transform="translate(170.86059,-100.57799)"
          style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
@@ -821,7 +829,7 @@ polygon {
        sodipodi:cy="27.077484"
        sodipodi:rx="15.436685"
        sodipodi:ry="14.968906"
-       d="m 309.66926,27.077484 c 0,8.267099 -6.91124,14.968907 -15.43669,14.968907 -8.52544,0 -15.43668,-6.701808 -15.43668,-14.968907 0,-8.267099 6.91124,-14.968906 15.43668,-14.968906 8.52545,0 15.43669,6.701807 15.43669,14.968906 z" />
+       d="m 309.66926,27.077484 a 15.436685,14.968906 0 1 1 -30.87337,0 15.436685,14.968906 0 1 1 30.87337,0 z" />
     <path
        transform="translate(165,100)"
        inkscape:connector-curvature="0"
@@ -858,7 +866,7 @@ polygon {
      style="stroke:#000000"
      transform="translate(0,144)">
     <path
-       d="m 309.66926,27.077484 c 0,8.267099 -6.91124,14.968907 -15.43669,14.968907 -8.52544,0 -15.43668,-6.701808 -15.43668,-14.968907 0,-8.267099 6.91124,-14.968906 15.43668,-14.968906 8.52545,0 15.43669,6.701807 15.43669,14.968906 z"
+       d="m 309.66926,27.077484 a 15.436685,14.968906 0 1 1 -30.87337,0 15.436685,14.968906 0 1 1 30.87337,0 z"
        sodipodi:ry="14.968906"
        sodipodi:rx="15.436685"
        sodipodi:cy="27.077484"
@@ -925,12 +933,12 @@ polygon {
          style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1"
          transform="translate(170.86059,-100.57799)"
          id="polygon12828"
-         points="590,235 585,240 375,240 380,235 " />
+         points="380,235 590,235 585,240 375,240 " />
       <polygon
          style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1"
          transform="translate(170.86059,-100.57799)"
          id="polygon12830"
-         points="590,365 585,370 585,240 590,235 " />
+         points="590,235 590,365 585,370 585,240 " />
     </g>
   </g>
   <path
@@ -1028,7 +1036,7 @@ polygon {
        sodipodi:cy="27.077484"
        sodipodi:rx="15.436685"
        sodipodi:ry="14.968906"
-       d="m 309.66926,27.077484 c 0,8.267099 -6.91124,14.968907 -15.43669,14.968907 -8.52544,0 -15.43668,-6.701808 -15.43668,-14.968907 0,-8.267099 6.91124,-14.968906 15.43668,-14.968906 8.52545,0 15.43669,6.701807 15.43669,14.968906 z" />
+       d="m 309.66926,27.077484 a 15.436685,14.968906 0 1 1 -30.87337,0 15.436685,14.968906 0 1 1 30.87337,0 z" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 317.49574,26.037364 44.90672,0"
@@ -1058,18 +1066,128 @@ polygon {
   </g>
   <path
      style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     d="m 331.18706,606.85707 0,59.87563"
+     d="m 496.18706,706.85707 0,59.87563"
      id="path15277"
      inkscape:path-effect="#path-effect15279"
-     inkscape:original-d="m 331.18706,606.85707 0,59.87563"
-     inkscape:connector-curvature="0"
-     transform="translate(165,100)" />
+     inkscape:original-d="m 496.18706,706.85707 0,59.87563"
+     inkscape:connector-curvature="0" />
   <path
      style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     d="m 669.85857,614.34153 0,46.77783"
+     d="m 834.85857,714.34153 0,46.77783"
      id="path15281"
      inkscape:path-effect="#path-effect15283"
-     inkscape:original-d="m 669.85857,614.34153 0,46.77783"
-     inkscape:connector-curvature="0"
-     transform="translate(165,100)" />
+     inkscape:original-d="m 834.85857,714.34153 0,46.77783"
+     inkscape:connector-curvature="0" />
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="586.7738"
+     y="1028.6886"
+     id="text6568"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan6570"
+       style="stroke:#000000"
+       x="586.7738"
+       y="1028.6886">connectionless</tspan></text>
+  <ellipse
+     cx="272"
+     cy="133"
+     rx="3"
+     ry="3"
+     id="ellipse4134"
+     sodipodi:cx="272"
+     sodipodi:cy="133"
+     sodipodi:rx="3"
+     sodipodi:ry="3"
+     transform="matrix(3,0,0,3,464.1835,623.38907)"
+     style="fill:#ffffff;stroke:#000000" />
+  <line
+     x1="1244.1836"
+     y1="1040.3892"
+     x2="1316.1836"
+     y2="1040.3892"
+     id="line4136"
+     style="stroke:#000000;stroke-width:3" />
+  <line
+     x1="1280.1836"
+     y1="1031.3892"
+     x2="1280.1836"
+     y2="1076.3892"
+     id="line4138"
+     style="stroke:#000000;stroke-width:3" />
+  <line
+     x1="1280.1836"
+     y1="1076.3892"
+     x2="1244.1836"
+     y2="1115.3892"
+     id="line4140"
+     style="stroke:#000000;stroke-width:3" />
+  <line
+     x1="1280.1836"
+     y1="1076.3892"
+     x2="1316.1836"
+     y2="1115.3892"
+     id="line4142"
+     style="stroke:#000000;stroke-width:3" />
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="1254.891"
+     y="1138.7605"
+     id="text23451"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan23453"
+       style="stroke:#000000"
+       x="1254.891"
+       y="1138.7605">User</tspan></text>
+  <polygon
+     transform="matrix(-4,0,0,-4,2366.7231,1723.8257)"
+     id="polygon10518"
+     style="fill:#000000;stroke:none"
+     points="290,147.5 290,152.5 285,150 " />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 644.00501,1125.9865 568.81849,0"
+     id="path10520"
+     inkscape:path-effect="#path-effect10522"
+     inkscape:original-d="m 644.00501,1125.9865 568.81849,0"
+     inkscape:connector-curvature="0" />
+  <polygon
+     points="285,150 290,147.5 290,152.5 "
+     style="fill:#000000;stroke:none"
+     id="polygon10524"
+     transform="matrix(4,0,0,-4,-291.2769,1603.8257)" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 861.05416,1004.3641 406.03164,-1.8711"
+     id="path10526"
+     inkscape:path-effect="#path-effect10528"
+     inkscape:original-d="m 861.05416,1004.3641 406.03164,-1.8711"
+     inkscape:connector-curvature="0" />
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="1197.8546"
+     y="985.65295"
+     id="text10530"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan10532"
+       style="stroke:#000000"
+       x="1197.8546"
+       y="985.65295">hi</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="1195.9834"
+     y="1105.4042"
+     id="text10534"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan10536"
+       style="stroke:#000000"
+       x="1195.9834"
+       y="1105.4042">hi</tspan></text>
 </svg>

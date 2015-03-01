@@ -37,7 +37,7 @@ extring entry = extring.set_static_string("http/connectionoriented/input/sink");
 Plugin.register(&entry, new AnyInterfaceExtension(sync, this));
 ```
 
-The diagram below shows the relationship of the netio and the dependent protocol stack.
+The diagram below shows the relationship of the netio and the dependent protocol stack. The echo protocol here sends the same data it receives.
 
 ![connectionoriented](../../docs/diagrams/connectionoriented_full.svg)
 

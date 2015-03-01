@@ -1092,54 +1092,6 @@ polygon {
     </g>
   </g>
   <g
-     id="g8795"
-     style="stroke:#000000"
-     transform="translate(-135.83003,109.7224)">
-    <rect
-       y="155.24071"
-       x="481.45007"
-       height="124.41232"
-       width="296.02319"
-       id="rect8797"
-       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1.73277986;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none" />
-    <path
-       inkscape:connector-curvature="0"
-       inkscape:original-d="m 481.37229,193.68528 296.02316,0"
-       inkscape:path-effect="#path-effect4325-3"
-       id="path8799"
-       d="m 481.37229,193.68528 296.02316,0"
-       style="fill:none;stroke:#000000;stroke-width:2.054636px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    <text
-       sodipodi:linespacing="125%"
-       id="text8801"
-       y="183.10326"
-       x="548.62903"
-       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       xml:space="preserve"><tspan
-         y="183.10326"
-         x="548.62903"
-         style="stroke:#000000"
-         id="tspan8803"
-         sodipodi:role="line">OutputStream</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text8805"
-       y="224.7648"
-       x="497.61365"
-       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       xml:space="preserve"><tspan
-         y="224.7648"
-         x="497.61365"
-         style="stroke:#000000"
-         id="tspan8807"
-         sodipodi:role="line">+ virtual write(</tspan><tspan
-         y="249.7648"
-         x="497.61365"
-         style="stroke:#000000"
-         sodipodi:role="line"
-         id="tspan8809">    extring*param):int</tspan></text>
-  </g>
-  <g
      id="g8811"
      style="stroke:#000000"
      transform="translate(213.55459,189.1993)">
@@ -1228,19 +1180,6 @@ polygon {
        inkscape:original-d="m 843.31757,207.77748 0,216.52287"
        inkscape:connector-curvature="0" />
   </g>
-  <polygon
-     points="290,152.5 285,150 290,147.5 "
-     style="fill:#000000;stroke:none"
-     id="polygon7892"
-     transform="matrix(0,-4,-4,0,1092.7231,1631.8257)" />
-  <path
-     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     d="m 327.44483,378.16299 0,-89.81344"
-     id="path7894"
-     inkscape:path-effect="#path-effect7896"
-     inkscape:original-d="m 327.44483,378.16299 0,-89.81344"
-     inkscape:connector-curvature="0"
-     transform="translate(165,100)" />
   <rect
      y="490.25293"
      x="471.52234"

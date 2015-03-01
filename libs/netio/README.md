@@ -8,8 +8,6 @@ Opening a socket
 =================
 
 
-![connectionless](../../docs/diagrams/connectionless.svg)
-![connectionoriented](../../docs/diagrams/connectionoriented.svg)
 
 Data communication is done in sinks. These sinks are like gstreamer sinks. And these sinks are of OutputStream type. The sinks are created when the Connection conveyor-belt is created. For example, for http server the following code with listen for incoming connections.
 
@@ -21,6 +19,13 @@ server.registerAllHooks(this);
 server.rehashHook(null,null);
 ```
 
+The component diagram below shows the newly created connection oriented `conveyor belt`. The `X` in the diagram stands for any protocol. For http it can be `http`. The naming has nothing to do with netio itself.
+
+![connectionoriented](../../docs/diagrams/connectionoriented.svg)
+
+The connection less is almost the same except the ConnectionlessPacketConveyorBelt is created.
+![connectionless](../../docs/diagrams/connectionless.svg)
+
 Reading input data
 ===================
 
@@ -31,6 +36,14 @@ HTTPRequestSink sync = new HTTPRequestSink();
 extring entry = extring.set_static_string("http/connectionoriented/input/sink");
 Plugin.register(&entry, new AnyInterfaceExtension(sync, this));
 ```
+
+The diagram below shows the relationship of the netio and the dependent protocol stack.
+
+![connectionoriented](../../docs/diagrams/connectionoriented_full.svg)
+
+The connectionless input-output is almost the same.
+
+![connectionoriented](../../docs/diagrams/connectionless_full.svg)
 
 Each connection is identified by a token. The token is parsed from the packet.
 

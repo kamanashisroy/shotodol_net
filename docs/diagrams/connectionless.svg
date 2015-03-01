@@ -454,14 +454,14 @@ polygon {
        sodipodi:linespacing="125%"
        id="text5950-83"
        y="183.10326"
-       x="558.62903"
+       x="538.62903"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
        xml:space="preserve"><tspan
          y="183.10326"
-         x="558.62903"
+         x="538.62903"
          style="stroke:#000000"
          id="tspan5952-5"
-         sodipodi:role="line">OutputStream</tspan></text>
+         sodipodi:role="line">NetOutputStream</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5975-9"

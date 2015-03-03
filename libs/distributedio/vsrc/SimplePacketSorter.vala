@@ -8,11 +8,8 @@ using shotodol.distributedio;
  */
 public class shotodol.distributedio.SimplePacketSorter : OutputStream32x {
 	protected uint wpos;
-	protected aroop_uword16 count;
-	protected OutputStream sink[64];
 	public SimplePacketSorter(uint givenWpos) {
 		wpos = givenWpos;
-		count = 0;
 	}
 
 	~SimplePacketSorter() {

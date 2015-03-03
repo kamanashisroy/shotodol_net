@@ -6,7 +6,7 @@ using shotodol.distributedio;
  * \addtogroup distributedio
  * @{
  */
-public class shotodol.distributedio.SimplePacketSorter : OutputStream {
+public class shotodol.distributedio.SimplePacketSorter : OutputStream32x {
 	protected uint wpos;
 	protected aroop_uword16 count;
 	protected OutputStream sink[64];
@@ -16,15 +16,6 @@ public class shotodol.distributedio.SimplePacketSorter : OutputStream {
 	}
 
 	~SimplePacketSorter() {
-	}
-
-	public int addSink(OutputStream givenSink) {
-		if(count >= 64)
-			return -1;
-		//sink[count++] = givenSink;
-		sink[count] = givenSink;
-		count++;
-		return (int)count-1;
 	}
 
 	public virtual aroop_uword16 resolveZero(extring*buf) {

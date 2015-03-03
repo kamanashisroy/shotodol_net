@@ -150,6 +150,8 @@ public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyo
 	public void registerRehashHook(Module mod) {
 		extring entry = extring.set_static_string("rehash");
 		PluginManager.register(&entry, new HookExtension(rehashHook, mod));
+		entry.rebuild_and_set_static_string("rehashAlter");
+		PluginManager.register(&entry, new HookExtension(rehashHook, mod));
 	}
 	public void registerAllHooks(Module mod) {
 		registerOutputSink(mod);

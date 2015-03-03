@@ -60,4 +60,10 @@ Modules
 - [netio](libs/netio/README.md)
 - [distributedio](libs/distributedio/README.md)
 
+Debugging
+==========
+
+The `zn` command prints the netio related watchdog output to the screen. It is alias of `watchdog -l 100 -tag 100` . It is recommended to add most of the debug output under 100 to 109 tags. For example, netio module tags watchdog output with 100 and distributedio tags with 81.
+
+
 Enjoy !

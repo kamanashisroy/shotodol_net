@@ -69,7 +69,7 @@ internal class shotodol.netio.NetOutputStream : OutputStream {
 				client.copyToEXtring(&rawAddr, &addr);
 				extring dlg = extring.stack(128);
 				dlg.printf("Writing %d bytes to %s, token %u\n", buf.length(), addr.to_string(), token);
-				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 20, &dlg);
+				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 100, &dlg);
 #endif
 				buf.shift(2); // skip the token
 				return client.writeTo(buf, &rawAddr);

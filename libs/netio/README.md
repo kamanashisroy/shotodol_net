@@ -103,9 +103,10 @@ More
 
 The shotodol_web project uses the connection oriented server. The code is good starting point to write a new service.
 
-Debugging
-=========
 
-Watchdog for netio is tagged with 20. So the watchdog can be addressed by 'watch -l 100 -tag 20' command.
+Debugging
+==========
+
+The `zn` command prints the netio related watchdog output to the screen. It is alias of `watchdog -l 100 -tag 100` . It is recommended to add most of the debug output under 100 to 109 tags. For example, netio module tags watchdog output with 100 and distributedio tags with 81.
 
 

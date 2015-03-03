@@ -76,7 +76,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 #if CONNECTIONLESS_DEBUG
 		extring dlg = extring.stack(512);
 		dlg.printf("Incoming data\n");
-		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.WatchdogSeverity.LOG, 0, 20, &dlg);
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.WatchdogSeverity.LOG, 0, 100, &dlg);
 #endif
 		xtring pkt = new xtring.alloc(1024/*, TODO set factory */);
 		extring softpkt = extring.copy_shallow(pkt);
@@ -92,7 +92,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 		pkt.fly().set_length(len);
 #if CONNECTIONLESS_DEBUG
 		dlg.printf("trimmed packet to %d data\n", pkt.fly().length());
-		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.WatchdogSeverity.LOG, 0, 20, &dlg);
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.WatchdogSeverity.LOG, 0, 100, &dlg);
 #endif
 		// IMPORTANT trim the pkt here.
 		pkt.shrink(len);
@@ -104,7 +104,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 		server.copyToEXtring(&dupPlatAddr, &addr);
 		//shotodol_platform_net.NetStreamPlatformImpl.copyAddrAs(server, pkt, &addr);
 		dlg.printf("Read %d bytes from %s, token %u\n", len, addr.to_string(), token);
-		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.WatchdogSeverity.LOG, 0, 20, &dlg);
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.WatchdogSeverity.LOG, 0, 100, &dlg);
 #endif
 		if(sink == null) {
 			return 0;

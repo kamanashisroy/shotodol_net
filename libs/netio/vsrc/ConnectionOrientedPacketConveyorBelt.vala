@@ -18,7 +18,7 @@ public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyo
 	/**
 	 * \brief This is vanilla tcp server.
 	 *
-	 * The server listens for data and put that data into 'protocol/input/sink'. The sink(like gstreamer sink) should be registered as plugin. For example, to listen to http data you need to write an extension at 'http/input/sink'. @see rehashHook()
+	 * The server listens for data and put that data into 'protocol/incoming/sink'. The sink(like gstreamer sink) should be registered as plugin. For example, to listen to http data you need to write an extension at 'http/incoming/sink'. @see rehashHook()
 	 * @param addr Server address, for example, TCP://127.0.0.1:80
 	 * @param stack Protocol stack, for example, http,xmpp etc .
 	 * see http server implementation for example.
@@ -144,7 +144,7 @@ public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyo
 	public void registerOutputSink(Module mod) {
 		extring entry = extring.stack(128);
 		entry.concat(&pstack);
-		entry.concat_string("/connectionoriented/output/sink");
+		entry.concat_string("/connectionoriented/outgoing/sink");
 		PluginManager.register(&entry, new AnyInterfaceExtension(responders, mod));
 	}
 	public void registerRehashHook(Module mod) {
@@ -163,7 +163,7 @@ public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyo
 		sink = null;
 		extring entry = extring.stack(128);
 		entry.concat(&pstack);
-		entry.concat_string("/connectionoriented/input/sink");
+		entry.concat_string("/connectionoriented/incoming/sink");
 		PluginManager.acceptVisitor(&entry, (x) => {
 			sink = (OutputStream)x.getInterface(null);
 		});

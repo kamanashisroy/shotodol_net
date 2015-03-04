@@ -16,7 +16,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 	/**
 	 * \brief This is vanilla connectionless server (UDP, for example).
 	 *
-	 * The server listens for data and put that data into protocol/input/sink. The sink(like gstreamer sink) should be registered as plugin. For example, to listen to udp data you need to write an extension at 'udp/input/sink'. @see rehashHook()
+	 * The server listens for data and put that data into protocol/incoming/sink. The sink(like gstreamer sink) should be registered as plugin. For example, to listen to udp data you need to write an extension at 'udp/incoming/sink'. @see rehashHook()
 	 * @param addr Server address, for example, UDP://127.0.0.1:5060
 	 * @param stack Protocol stack, for example, sip,rtp etc .
 	 * 
@@ -121,7 +121,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 	public void registerOutputSink(Module mod) {
 		extring entry = extring.stack(128);
 		entry.concat(&pstack);
-		entry.concat_string("/connectionless/output/sink");
+		entry.concat_string("/connectionless/outgoing/sink");
 		PluginManager.register(&entry, new AnyInterfaceExtension(responder, mod));
 	}
 	public void registerRehashHook(Module mod) {
@@ -138,7 +138,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 		sink = null;
 		extring entry = extring.stack(128);
 		entry.concat(&pstack);
-		entry.concat_string("/connectionless/input/sink");
+		entry.concat_string("/connectionless/incoming/sink");
 		PluginManager.acceptVisitor(&entry, (x) => {
 			sink = (OutputStream)x.getInterface(null);
 		});

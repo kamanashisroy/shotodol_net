@@ -26,14 +26,14 @@ The component diagram below shows the newly created connection oriented `conveyo
 The connection less is almost the same except the ConnectionlessPacketConveyorBelt is created.
 ![connectionless](../../docs/diagrams/connectionless.svg)
 
-Reading input data
+Reading incoming data
 ===================
 
-To read the data the reader need to register an input sink. For example, to read the data from http the following code registers a sink in the plugin.
+To read the data the reader need to register an incoming sink. For example, to read the data from http the following code registers a sink in the plugin.
 
 ```vala
 HTTPRequestSink sync = new HTTPRequestSink();
-extring entry = extring.set_static_string("http/connectionoriented/input/sink");
+extring entry = extring.set_static_string("http/connectionoriented/incoming/sink");
 Plugin.register(&entry, new AnyInterfaceExtension(sync, this));
 ```
 
@@ -64,8 +64,8 @@ Writing data is done in sinks in the opposite way of reading. These sinks are li
  * This hook should be called after the socket is open and listening starts. Basically it is registered to be executed in 'onReadyAlter'.
  */
 internal int rehashHook(extring*inmsg, extring*outmsg) {
-	sink = null; /* This is the output sink, it is of type OutputStream */
-	extring entry = extring.set_static_string("http/connectionoriented/output/sink"); /* This is the location of connection oriented output sink */
+	sink = null; /* This is the outgoing sink, it is of type OutputStream */
+	extring entry = extring.set_static_string("http/connectionoriented/outgoing/sink"); /* This is the location of connection oriented outgoing sink */
 	Plugin.acceptVisitor(&entry, (x) => {
 		sink = (OutputStream)x.getInterface(null);
 	});

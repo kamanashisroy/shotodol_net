@@ -123,6 +123,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 		entry.concat(&pstack);
 		entry.concat_string("/connectionless/outgoing/sink");
 		PluginManager.register(&entry, new AnyInterfaceExtension(responder, mod));
+		responder.setName(&entry);
 	}
 	public void registerRehashHook(Module mod) {
 		extring entry = extring.set_static_string("rehash");

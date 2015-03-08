@@ -146,6 +146,7 @@ public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyo
 		entry.concat(&pstack);
 		entry.concat_string("/connectionoriented/outgoing/sink");
 		PluginManager.register(&entry, new AnyInterfaceExtension(responders, mod));
+		responders.setName(&entry);
 	}
 	public void registerRehashHook(Module mod) {
 		extring entry = extring.set_static_string("rehash");

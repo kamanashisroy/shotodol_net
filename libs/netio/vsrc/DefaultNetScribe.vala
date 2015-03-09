@@ -18,9 +18,9 @@ public class shotodol.netio.DefaultNetScribe : shotodol.netio.NetScribe {
 			return rawAddr.calcHash();
 		}
 	}
-	SearchableFactory<NetAddr> addrs;
+	SearchableOPPFactory<NetAddr> addrs;
 	public DefaultNetScribe() {
-		addrs = SearchableFactory<NetAddr>.for_type(16,1/* Start token value from 1. */);
+		addrs = SearchableOPPFactory<NetAddr>.for_type(16,1/* Start token value from 1. */);
 	}
 
 	~DefaultNetScribe() {

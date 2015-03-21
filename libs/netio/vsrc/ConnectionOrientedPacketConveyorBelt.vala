@@ -47,14 +47,14 @@ public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyo
 	public override int start(Fiber?plr) {
 		extring rpt = extring.stack(128);
 		rpt.printf("Shotodol connection oriented server listening spindle starts at %s", laddr.to_string());
-		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, &rpt);
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.Severity.LOG, 0, 0, &rpt);
 		setup(&laddr);
 		return 0;
 	}
 
 	int setup(extring*addr) {
 		extring wvar = extring.set_static_string("Connection Oriented server");
-		Watchdog.watchvar(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, &wvar, addr);
+		Watchdog.watchvar(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.Severity.LOG, 0, 0, &wvar, addr);
 		extring sockaddr = extring.stack(128);
 		sockaddr.concat(addr);
 		//sockaddr.trim_to_length(23);
@@ -62,7 +62,7 @@ public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyo
 		int ret = server.connect(&sockaddr, shotodol_platform_net.ConnectFlags.BIND);
 		sockaddr.destroy();
 		if(ret == 0) {
-			Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Listening");
+			Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.Severity.LOG, 0, 0, "Listening");
 			pl.add(&server);
 			poll = true;
 		}
@@ -93,13 +93,13 @@ public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyo
 		pkt.fly().set_length(len);
 #if CONNECTION_ORIENTED_DEBUG
 		print("trimmed packet to %d data\n", pkt.fly().length());
-		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Reading ..");
+		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.Severity.LOG, 0, 0, "Reading ..");
 #endif
 		// IMPORTANT trim the pkt here.
 		pkt.shrink(len);
 #if CONNECTION_ORIENTED_DEBUG
 		print("Read %d bytes from %d connection\n", len-2, token);
-		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Read bytes ..");
+		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.Severity.LOG, 0, 0, "Read bytes ..");
 #endif
 		if(sink == null) {
 			return 0;
@@ -108,7 +108,7 @@ public class shotodol.netio.ConnectionOrientedPacketConveyorBelt : PacketConveyo
 		pkt.fly().set_char_at(0, ch);
 		ch = (uchar)(token & 0xFF);
 		pkt.fly().set_char_at(1, ch);
-		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Writing to sink");
+		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.Severity.LOG, 0, 0, "Writing to sink");
 		sink.write(pkt);
 		return 0;
 	}

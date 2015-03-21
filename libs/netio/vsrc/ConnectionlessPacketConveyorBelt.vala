@@ -48,7 +48,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 	public override int start(Fiber?plr) {
 		extring rpt = extring.stack(128);
 		rpt.printf("Shotodol connection less server listening spindle starts at %s", laddr.to_string());
-		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, &rpt);
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.Severity.LOG, 0, 0, &rpt);
 		setup(&laddr);
 		return 0;
 	}
@@ -56,7 +56,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 	int setup(extring*addr) {
 		// TODO in place of shotodol_platform_net use abstraction to decouple from the implementation platform
 		extring wvar = extring.set_static_string("Connectionless Server");
-		Watchdog.watchvar(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, &wvar, addr);
+		Watchdog.watchvar(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.Severity.LOG, 0, 0, &wvar, addr);
 		extring sockaddr = extring.stack(128);
 		sockaddr.concat(addr);
 		//sockaddr.trim_to_length(23);
@@ -65,7 +65,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 		sockaddr.destroy();
 		responder.updateNetStream(&server);
 		if(ret == 0) {
-			Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Listening");
+			Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.Severity.LOG, 0, 0, "Listening");
 			pl.add(&server);
 			poll = true;
 		}
@@ -76,7 +76,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 #if CONNECTIONLESS_DEBUG
 		extring dlg = extring.stack(512);
 		dlg.printf("Incoming data\n");
-		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.WatchdogSeverity.LOG, 0, 100, &dlg);
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.Severity.LOG, 0, 100, &dlg);
 #endif
 		xtring pkt = new xtring.alloc(1024/*, TODO set factory */);
 		extring softpkt = extring.copy_shallow(pkt);
@@ -92,7 +92,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 		pkt.fly().set_length(len);
 #if CONNECTIONLESS_DEBUG
 		dlg.printf("trimmed packet to %d data\n", pkt.fly().length());
-		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.WatchdogSeverity.LOG, 0, 100, &dlg);
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.Severity.LOG, 0, 100, &dlg);
 #endif
 		// IMPORTANT trim the pkt here.
 		pkt.shrink(len);
@@ -104,7 +104,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 		server.copyToEXtring(&dupPlatAddr, &addr);
 		//shotodol_platform_net.NetStreamPlatformImpl.copyAddrAs(server, pkt, &addr);
 		dlg.printf("Read %d bytes from %s, token %u\n", len, addr.to_string(), token);
-		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.WatchdogSeverity.LOG, 0, 100, &dlg);
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10, Watchdog.Severity.LOG, 0, 100, &dlg);
 #endif
 		if(sink == null) {
 			return 0;
@@ -113,7 +113,7 @@ public class shotodol.netio.ConnectionlessPacketConveyorBelt : PacketConveyorBel
 		pkt.fly().set_char_at(0, ch);
 		ch = (uchar)(token & 0xFF);
 		pkt.fly().set_char_at(1, ch);
-		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.WatchdogSeverity.LOG, 0, 0, "Writing to sink");
+		Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 3, Watchdog.Severity.LOG, 0, 0, "Writing to sink");
 		sink.write(pkt);
 		return 0;
 	}
